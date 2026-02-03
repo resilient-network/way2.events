@@ -592,8 +592,8 @@ import { themeConfig } from '@/config'
       document.getElementById('waitlistForm')!.style.display = 'none'
       document.getElementById('successContainer')!.style.display = 'block'
       
-      // Get the way2_ref_id from response
-      const way2RefId = result.way2_ref_id
+      // Get the way2_ref_id from response (fallback to totem_ref_id for backward compatibility)
+      const way2RefId = result.way2_ref_id || result.totem_ref_id
       
       // Setup copy link button with referral parameter
       const copyBtn = document.getElementById('copyLinkBtn')
