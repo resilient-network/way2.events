@@ -1,389 +1,552 @@
 ---
 import IndexLayout from '@/layouts/IndexLayout.astro'
 import Button from '@/components/ui/Button.astro'
+import BackgroundShader from '@/components/ui/BackgroundShader.astro'
 ---
 
 <IndexLayout
   title="Way2 — Lose Yourself, Not Your Friends"
   description="Find your friends at crowded events — no compass or cell service required."
 >
-  <main class="landing-page">
-    <header class="hero card-depth" aria-labelledby="landing-hero-heading">
-      <div
-        class="hero-unicorn"
-        data-us-project-src="/unicorn/slidebg.json"
-        data-us-production="true"
-        data-us-lazyload="true"
-        data-us-dpi="3"
-        data-us-alttext="Animated Way2 background"
-        data-us-arialabel="Animated hero background scene"
-      ></div>
-      <div class="hero-content">
+  <BackgroundShader />
+  
+  <main class="landing-page editorial-grid">
+    <!-- Hero Section -->
+    <div class="grid-cell hero-cell">
+      <div class="hero-image-container">
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcset="/media/embrace-mobile.png"
+          />
+          <img 
+            src="/media/embrace.png" 
+            alt="Crowd embrace" 
+            class="hero-bg-image"
+          />
+        </picture>
+        <div class="hero-overlay"></div>
+      </div>
+      
+      <div class="hero-logo-container">
         <img 
-          src="/brand/way2-logo-dark.svg" 
+          src="/brand/way2-logo-light.svg" 
           alt="Way2"
-          fetchpriority="high"
-          loading="eager"
+          class="hero-logo"
+          width="140"
         />
       </div>
-    </header>
 
-    <section class="demos-section">
-      <h2 class="loud-text heading-2xl">
-        <div style="color: var(--colors-ink-20);">Seamless connection at crowded events — </div>no compass or cell service required
-      </h2>
-      <div class="demos">
-        <img class="chat-screenshot"
-            src="/media/tg-proto-chat.webp"
-            aria-label="Screenshot of the chat view"
-            loading="lazy"
-            decoding="async"
-            width="480"
-            height="853"
-          />
-        <div class="sizzle-reel card-depth">
-          <video
-            aria-label="Visual walkthrough of the app"
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="none"
-          >
-            <source src="/media/tg-proto-sizzle.webm" type="video/webm" />
-            <source src="/media/tg-proto-sizzle.mp4" type="video/mp4" />
-          </video>
+      <div class="hero-content">
+        <h1 class="heading-display">
+          The Network for Crowd-Scale Events
+        </h1>
+        <div class="hero-footer">
+          <p class="hero-subhead">
+            Reliable communication when the network fails.<br />
+            <span class="text-highlight">No compass or cell service required.</span>
+          </p>
+          
+          <div class="hero-actions">
+            <Button
+              href="/partner-up"
+              label="For Organizers"
+              variant="primary"
+              icon="🛡️"
+            />
+            <Button
+              href="/attendees"
+              label="For Attendees"
+              variant="secondary"
+              icon="👋"
+            />
+          </div>
         </div>
-        <img class="ar-screenshot"
-            src="/media/tg-proto-ar.webp"
-            aria-label="Screenshot of the augmented reality friend finding"
-            loading="lazy"
-            decoding="async"
-            width="480"
-            height="853"
-          />
       </div>
-    </section>
+    </div>
 
-    <section>
-      <h2 class="loud-text heading-2xl">
-        Say Hello to the connected&nbsp;crowd&nbsp;👋
-      </h2>
-      <p class="body-xl" style="color: var(--colors-ink-30); text-align: center;">
-        Way2 connects phones directly, creating a living, breathing local network that thrives in dense crowds —
-        <b>the bigger the crowd gets, the better it works</b>
-      </p>
-      <section class="feature-grid" aria-label="Key capabilities">
-        <article class="feature-card">
-          <span class="feature-emoji" aria-hidden="true">🛡️</span>
-          <div class="feature-content">
-            <div class="body-xl">Stay Safe & Connected</div>
-            <div class="body-l">Quickly find your group or get help—even when networks fail</div>
-          </div>
-        </article>
-        <article class="feature-card">
-          <span class="feature-emoji" aria-hidden="true">📶</span>
-          <div class="feature-content">
-            <div class="body-xl">Reliable Event-Networks</div>
-            <div class="body-l">Secure p2p internet technology ensures dependable communication at crowded venues</div>
-          </div>
-        </article>
-        <article class="feature-card">
-          <span class="feature-emoji" aria-hidden="true">😊</span>
-          <div class="feature-content">
-            <div class="body-xl">Worry-Free Experiences</div>
-            <div class="body-l">Enjoy events with peace of mind, your crew is always within reach</div>
-          </div>
-        </article>
-      </section>
-    </section>
+    <!-- Sidebar / Sticky Progress -->
+    <div class="grid-cell desktop-only glass-panel-dark display-cell">
+       <div class="sticky-content">
+         <div class="display-group">
+            <span class="label-mono">System Status</span>
+            <span class="display-value">ONLINE</span>
+         </div>
+         <div class="display-group">
+            <span class="label-mono">Latency</span>
+            <span class="display-value">0.02ms</span>
+         </div>
+         <div class="display-group mt-auto">
+            <span class="label-mono">Scroll</span>
+            <div class="scroll-line"></div>
+         </div>
+       </div>
+    </div>
 
-    <section class="network-impact">
-      <h2 class="loud-text heading-2xl">
-        Wave Goodbye to the disconnected state 📵
-      </h2>
-      <p class="body-xl" style="color: var(--colors-ink-30); text-align: center;">
-        No more struggling with failing networks
+    <!-- Organizer Section (01) -->
+    <div class="grid-cell content-cell glass-panel main-col">
+      <span class="label-mono">(01) — For Organizers</span>
+      <h2 class="heading-display">Secure the<br />Experience</h2>
+      <p class="body-editorial">
+        Typical networks fail when they are needed most. Way2 provides a dedicated, resilient mesh network for your event operations and attendee safety.
       </p>
-      <figure class="network-impact-image card-depth">
+      <ul class="feature-list">
+        <li><span class="icon">🛡️</span> Coordinate help in emergencies</li>
+        <li><span class="icon">📶</span> Venue-wide scalability</li>
+        <li><span class="icon">⚡</span> 99.999% Uptime</li>
+      </ul>
+      <div class="action-wrapper">
+        <Button
+          href="/partner-up"
+          label="Partner Up"
+          variant="primary"
+        />
+      </div>
+    </div>
+
+    <div class="grid-cell visual-cell main-col">
+      <figure class="network-card">
         <img 
           src="/media/network-failure-card.webp" 
           alt="Phone screen showing lost signal"
           loading="lazy"
-          decoding="async"
-          width="382"
-          height="542"
+          width="300"
         />
+        <figcaption class="label-mono">Fig 1. Network Failure</figcaption>
       </figure>
-    </section>
+    </div>
 
-    <section>
-      <h2 class="loud-text heading-2xl">
-        Festivals Love It
-      </h2>
-      <div class="testimonials">
-        <div class="testimonials-card">
-          <h3 class="heading-l">
-            What Organizers Say
-          </h3>
-          <ul class="body-l">
-            <li>"Safety is our biggest concern"</li>
-            <li>"We've been looking for a platform that does this"</li>
-            <li>"An upgraded Walkie Talkie"</li>
-            <li>"Game Changer!"</li>
-          </ul>
-          <div class="testimonial-cta">
-            <Button
-              href="/partner-up"
-              label="Partner Up"
-              variant="primary"
-              icon="▶"
-              ariaLabel="Partner Up"
-            />
-          </div>
+    <!-- Attendee Section (02) -->
+    <div class="grid-cell visual-cell glass-panel-dark mobile-order-2 main-col">
+       <div class="phone-cluster">
+          <img class="phone-mockup chat-view"
+            src="/media/tg-proto-chat.webp"
+            alt="Chat view"
+            loading="lazy"
+          />
+          <img class="phone-mockup ar-view"
+            src="/media/tg-proto-ar.webp"
+            alt="AR view"
+            loading="lazy"
+          />
+       </div>
+    </div>
+
+    <div class="grid-cell content-cell glass-panel mobile-order-1 main-col">
+      <span class="label-mono">(02) — For Attendees</span>
+      <h2 class="heading-display">Lose Yourself,<br />Not Your Friends</h2>
+      <p class="body-editorial">
+        Way2 connects phones directly, creating a living, breathing local network that thrives in dense crowds.
+      </p>
+      <blockquote class="quote-text">
+        "The bigger the crowd, the better it works."
+      </blockquote>
+      <div class="action-wrapper">
+        <Button
+          href="/attendees"
+          label="Get the App"
+          variant="secondary"
+        />
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="grid-cell full-width glass-panel">
+      <span class="label-mono center-text" style="display:block; margin-bottom: 2rem;">(03) — Testimonials</span>
+      <h2 class="heading-display center-text" style="font-size: var(--font-size-3xl);">Festivals Love It</h2>
+      
+      <div class="testimonials-flow">
+        <div class="testimonial-large">
+          <p>"Safety is our biggest concern. Way2 is a game changer."</p>
+          <cite>— Event Organizer</cite>
         </div>
-        <div class="testimonials-card">
-          <h3 class="heading-l">
-            What Attendees Say
-          </h3>
-          <ul class="body-l">
-            <li>"Dude, I needed this at the gorge last weekend"</li>
-            <li>"Finally, we've needed someone to solve this for so long"</li>
-            <li>"I can't wait to send this to my friends"</li>
-          </ul>
-          <div class="testimonial-cta">
-            <Button
-              href="/attendees"
-              label="Get The App"
-              variant="primary"
-              icon="▶"
-              ariaLabel="Partner Up"
-            />
+        <div class="testimonial-row">
+          <div class="testimonial-small">
+            <p>"Dude, I needed this at the gorge last weekend."</p>
+            <cite>— Festival Attendee</cite>
+          </div>
+          <div class="testimonial-small">
+            <p>"Finally, reliable comms without the cell tower overload."</p>
+            <cite>— Production Manager</cite>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+
   </main>
 </IndexLayout>
 
 <style>
-  .testimonials { 
-    margin-top: 32px;
+  .hero-cell {
+    grid-column: 1 / -1;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    align-items: stretch;
-    justify-content: stretch;
-
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 0 0;
   }
 
-  .testimonial-cta {
+  .hero-image-container {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    mix-blend-mode: difference;
+  }
+
+  .hero-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-logo-container {
+    position: absolute;
+    top: 80px;
+    left: 2rem;
+    z-index: 10;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 2rem 2rem 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-cell .heading-display {
+    font-size: clamp(2.5rem, 6vw + 1rem, 7rem);
+  }
+
+  @media (min-width: 768px) {
+    .hero-content {
+      padding: 4rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      align-items: end;
+      gap: 4rem;
+    }
+  }
+
+  .hero-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-subhead {
+    font-size: var(--font-size-l);
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 350;
+  }
+
+  .text-highlight {
+    color: var(--colors-teal-95);
+    font-weight: 400;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Sidebar */
+  .display-cell {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .sticky-content {
+    position: sticky;
+    top: 2rem;
+    height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .display-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .display-value {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    color: var(--colors-teal-95);
+    letter-spacing: 0.05em;
+  }
+
+  .mt-auto {
+    margin-top: auto;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 100px;
+    background: linear-gradient(to bottom, var(--colors-teal-95), transparent);
+  }
+
+  /* Content Sections */
+  .content-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4rem;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+  }
+
+  .visual-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 4rem;
+  }
+
+  .network-card {
+    margin: 0;
+    text-align: center;
+    
+    img {
+      border-radius: 4px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    figcaption {
+      margin-top: 1rem;
+      color: var(--colors-red-80);
+    }
+  }
+
+  .phone-cluster {
+    position: relative;
+    width: 100%;
+    height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .testimonials-card {
-    padding: 32px;
-    border-radius: 12px;
-    border: 1px solid var(--colors-bright-ink-70, #ABA4E3);
-    background: var(--colors-ink-99, #FCF8FF);
-    box-shadow: 0 0.879px 35.156px 7.031px var(--colors-ink-150, #E4E0FA), 0 -0.879px 3.516px -0.879px var(--colors-Ink-500, #9B97CE) inset, 0 0.879px 3.516px -0.879px #FFF inset;
-    flex-basis: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    h3 {
-      text-align: center;
-      border-radius: 8px;
-    }
-
-    ul {
-      /* padding-left: 8px; */
-    }
-
-    li {
-      margin: 0 0 16px 0;
-
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    .testimonials {
-      flex-direction: row;
-    }
-  }
-
-  .demos-section {
-    text-align: center;
-    overflow: hidden;
-  }
-
-  .demos {
-    display: inline-block;
-    margin: 0 auto;
-    text-align: center;
-    position: relative;
-
-    .sizzle-reel {
-      display: inline-block;
-      overflow: hidden;
-      border-radius: 6px;
-      flex-shrink: 0;
-      flex-grow: 0;
-      border: 2px solid var(--colors-bright-ink-10);
-      position: relative;
-      box-shadow: 4px 4px 24px var(--colors-teal-200, #75F1EA);
-      z-index: 1000;
-
-      video {
-        position: relative;
-        width: 230px;
-        height: auto;
-        object-fit: contain;
-        display: block;
-      }
-    }
-
-    .chat-screenshot {
-      height: 480px;
-      width: 250px;
-      transform: rotate(-1.781deg);
-      position: absolute;
-      left: -200px;
-      top: 30px;
-    }
-
-    .ar-screenshot {
-      height: 480px;
-      width: 250px;
-      transform: rotate(1.781deg);
-      position: absolute;
-      right: -200px;
-      top: 30px;
-    }
-  }
-
-  .feature-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-
-  .feature-card {
-    display: flex;
-    padding: 16px;
-    align-items: center;
-    gap: 16px;
-    border-radius: 12px;
-    border: 1px solid var(--colors-bright-ink-70, #ABA4E3);
-    background: var(--colors-ink-99, #FCF8FF);
-    box-shadow: 0 0.879px 35.156px 7.031px var(--colors-ink-150, #E4E0FA), 0 -0.879px 3.516px -0.879px var(--colors-Ink-500, #9B97CE) inset, 0 0.879px 3.516px -0.879px #FFF inset;
-  }
-
-  .feature-content {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-
-    .body-xl {
-      color: var(--colors-indigo-40);
-    }
-  }
-
-  .feature-emoji {
-    font-size: 3rem;
-    display: inline-block;
-  }
-
-  .highlight-block {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    color: var(--colors-teal-95);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    background-color: var(--colors-indigo-40);
-  }
-
-  .highlight-image {
+  .phone-mockup {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* filter: saturate(1.4); */
-    mix-blend-mode: hard-light;
+    width: 280px;
+    border-radius: 32px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    border: 6px solid #1a1a1a;
   }
 
-  .highlight-content {
-    position: relative;
+  .chat-view {
+    transform: rotate(-8deg) translateX(-80px) translateY(-20px);
     z-index: 1;
+  }
+
+  .ar-view {
+    transform: rotate(8deg) translateX(80px) translateY(20px);
+    z-index: 2;
+  }
+
+  .quote-text {
+    font-family: 'Instrument Sans', sans-serif;
+    font-style: italic;
+    font-size: 2rem;
+    line-height: 1.2;
+    color: var(--colors-teal-95);
+    border-left: 2px solid var(--colors-teal-95);
+    padding-left: 2rem;
+    margin: 0;
+  }
+
+  /* Testimonials */
+  .full-width {
+    grid-column: 1 / -1;
+    padding: 6rem 2rem;
+  }
+
+  .center-text {
+    text-align: center;
+  }
+
+  .testimonials-flow {
+    max-width: 1000px;
+    margin: 4rem auto 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    text-align: center;
-    gap: 0.75rem;
-    padding: 4rem 2rem;
-    margin-top: 6rem;
+    gap: 4rem;
   }
 
-  .highlight-content .heading-2xl {
-    color: var(--colors-teal-95, #75F1EA);
+  .testimonial-large {
     text-align: center;
-    text-shadow: 4px 4px 8px var(--colors-teal-95, #75F1EA);
-  }
+    
+    p {
+      font-family: 'Instrument Sans', sans-serif;
+      font-style: italic;
+      font-size: 3rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: var(--colors-ink-100);
+    }
 
-  .highlight-content .heading-l {
-    color: var(--colors-ink-98, #F2EFFF);
-    text-align: center;
-  }
-
-  .love-it-heart {
-    fill: var(--colors-fuchsia-80, #FF6ADC);
-    stroke-width: 8px;
-    stroke: var(--colors-indigo-40, #4D00FF);
-    filter: drop-shadow(4px 4px 8px var(--colors-teal-95, #75F1EA));
-  } 
-
-  .network-impact {
-    .loud-text {
-      color: var(--colors-red-20);
-      text-shadow: 4px 4px 8px var(--colors-yellow-100);
+    cite {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--colors-teal-95);
+      font-style: normal;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
   }
 
-  .network-impact-image {
-      position: relative;
-      background-color: var(--colors-indigo-40);
-      margin: 0;
+  .testimonial-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .testimonial-small {
+    p {
+      font-size: 1.5rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    cite {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--colors-teal-95);
+      font-style: normal;
+      opacity: 0.8;
+    }
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-only {
       display: flex;
-      align-items: flex-end;
-      background: linear-gradient(0deg, rgba(232, 42, 91, 0.40) 0%, rgba(232, 42, 91, 0.40) 100%), url('/media/network-dies-bg.webp') no-repeat center center/cover;;
-      background-blend-mode: multiply, normal;
-      z-index: 10;
-      border-radius: 24px;
-      overflow: hidden;
+    }
+  }
 
-      img {
-        margin: 0 auto;
-        right: 30%;
-        bottom: 8px;
-        background: linear-gradient(0deg, rgba(254, 185, 193, 0.40) 0%, rgba(254, 185, 193, 0.40) 100%), var(--Colors-Red-20, #9B0D31);
-        box-shadow: 0px 0px 16px #9B0D31;
-        z-index: 0;
-        display: block;
-      }
+  @media (max-width: 767px) {
+    .hero-bg-image {
+      object-fit: cover;
+      object-position: center top;
     }
 
-  @media screen and (min-width: 768px) {
-    .network-impact-image {
-      aspect-ratio: 16/9;
+    .mobile-order-1 { order: 1; }
+    .mobile-order-2 { order: 2; }
+
+    .content-cell {
+      padding: 1.5rem;
+    }
+
+    .visual-cell {
+      padding: 1.5rem;
+    }
+
+    .full-width {
+      padding: 3rem 1.5rem;
+    }
+
+    .phone-cluster {
+      position: relative;
+      height: auto;
+      min-height: 360px;
+    }
+
+    .phone-mockup {
+      width: 200px;
+    }
+
+    .chat-view {
+      transform: rotate(-6deg) translateX(-50px) translateY(-10px);
+    }
+
+    .ar-view {
+      transform: rotate(6deg) translateX(50px) translateY(10px);
+    }
+
+    .quote-text {
+      font-size: 1.25rem;
+      padding-left: 1.25rem;
+    }
+
+    .testimonials-flow {
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .testimonial-row {
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
     
+    .testimonial-large p {
+      font-size: 2rem;
+    }
   }
 
+  @media (max-width: 420px) {
+    .hero-content {
+      padding: 1.5rem 1.25rem 2.5rem 1.25rem;
+      gap: 1.5rem;
+    }
+
+    .hero-subhead {
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      gap: 0.75rem;
+    }
+
+    .content-cell,
+    .visual-cell {
+      padding: 1.25rem;
+    }
+  }
 </style>

@@ -16,7 +16,7 @@ const currentPath = normalizePath(Astro.url.pathname)
 
 <header>
   <nav class="nav">
-    <div class="nav-pill card-depth" role="menubar">
+    <div class="nav-pill glass-panel" role="menubar">
       {navLinks.map(({ href, label }) => (
         <a
           href={href}
@@ -28,83 +28,107 @@ const currentPath = normalizePath(Astro.url.pathname)
       ))}
     </div>
 
-    <a href="/nye" class="beta-cta card-depth">
+    <a href="/nye" class="beta-cta glass-panel">
       <span class="beta-label">NYE 🎉</span>
     </a>
-
-    <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header" class="beta-cta card-depth">
-      <span class="beta-label">Try It</span>
-    </a> -->
   </nav>
 </header>
 <style>
   header {
     position: fixed;
     top: 24px;
-    left: 8px;
-    right: 8px;
+    left: 0;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10000;
+    pointer-events: none;
   }
 
   .nav {
     display: flex;
-    justify-content: stretch;
+    justify-content: center;
     gap: 8px;
+    pointer-events: auto;
+    flex-wrap: wrap;
+    max-width: 100vw;
   }
 
   .nav-pill {
     display: flex;
-    padding: 2px;
+    padding: 4px;
     justify-content: center;
     align-items: center;
-    border-radius: 9px;
-    border: 1px solid var(--colors-indigo-80, #4D00FF);
-    background: var(--colors-ink-95, #EDE8FE);
+    border-radius: 999px;
+    gap: 4px;
+    flex-wrap: wrap;
+    max-width: calc(100vw - 32px);
 
     .nav-link {
-      overflow: hidden;
-      color: var(--colors-ink-10, #19153E);
-      text-align: center;
+      color: var(--colors-ink-100);
       text-decoration: none;
-      font-feature-settings: 'liga' off, 'clig' off;
-      text-overflow: ellipsis;
-      font-family: "Inclusive Sans";
-      font-size: var(--font-size-s);
-      font-style: normal;
+      font-family: var(--font-sans);
+      font-size: 14px;
       font-weight: 500;
-      display: flex;
-      padding: 4px 8px;
-      align-items: center;
-      border-radius: 7px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+      opacity: 0.8;
     
+      &:hover {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
       &.is-active {
         background: var(--colors-indigo-40);
-        color: var(--colors-teal-95);
+        color: var(--colors-ink-100);
+        opacity: 1;
       }
     }
   }
 
   .beta-cta {
     display: flex;
-    padding: 0 8px;
+    padding: 0 16px;
     justify-content: center;
     align-items: center;
-    border-radius: 9px;
-    border: 1px solid var(--colors-indigo-40);
-    background: var(--colors-teal-95);
-    overflow: hidden;
-    color: var(--colors-indigo-40);
-    text-align: center;
-    font-feature-settings: 'liga' off, 'clig' off;
-    text-overflow: ellipsis;
+    border-radius: 999px;
     text-decoration: none;
-    font-size: 12px;
-    font-style: normal;
+    font-size: 14px;
     font-weight: 600;
-    line-height: 18px; /* 150% */
+    color: var(--colors-ink-100);
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  @media (max-width: 420px) {
+    header {
+      top: 12px;
+    }
+
+    .nav {
+      gap: 6px;
+    }
+
+    .nav-pill {
+      padding: 2px;
+      max-width: calc(100vw - 24px);
+    }
+
+    .nav-pill .nav-link {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+
+    .beta-cta {
+      padding: 0 10px;
+      font-size: 12px;
+    }
   }
 
 </style>
