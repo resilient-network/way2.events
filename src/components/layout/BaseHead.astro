@@ -16,67 +16,15 @@ const { title, description } = Astro.props as BaseHeadProps
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Async load Google Fonts to prevent render blocking -->
-<link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<!-- Preload critical fonts -->
+<link rel="preload" href="/fonts/InstrumentSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/InclusiveSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Async load Google Fonts (Silkscreen only) -->
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 </noscript>
 <link rel="sitemap" href="/sitemap-index.xml" />
-<!-- Preload Unicorn Studio JSON with low priority to avoid blocking critical path -->
-<link rel="preload" href="/unicorn/slidebg.json" as="fetch" crossorigin="anonymous" fetchpriority="low" />
-<!-- Load Unicorn Studio script asynchronously to avoid blocking critical path -->
-<script src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.33/dist/unicornStudio.umd.js" defer></script>
-<script is:inline>
-  (() => {
-    const initUnicorn = () => {
-      if (!window.UnicornStudio || typeof window.UnicornStudio.init !== 'function') {
-        setTimeout(initUnicorn, 120);
-        return;
-      }
-      if (typeof window.UnicornStudio.destroy === 'function') {
-        try {
-          window.UnicornStudio.destroy();
-        } catch (error) {
-          console.error(error);
-        }
-      }
-      Promise.resolve(window.UnicornStudio.init()).catch((error) => {
-        console.error(error);
-      });
-    };
-
-    // Delay initialization until after critical content loads
-    const schedule = () => {
-      // Use requestIdleCallback if available to defer until browser is idle
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(initUnicorn, { timeout: 2000 });
-      } else {
-        // Fallback: wait for next idle period
-        setTimeout(() => {
-          requestAnimationFrame(initUnicorn);
-        }, 200);
-      }
-    };
-
-    // Wait for Unicorn Studio script to load (since it's deferred)
-    const waitForScript = () => {
-      if (window.UnicornStudio) {
-        schedule();
-      } else {
-        setTimeout(waitForScript, 50);
-      }
-    };
-
-    // Initialize after page load to avoid blocking critical path
-    if (document.readyState === 'complete') {
-      waitForScript();
-    } else {
-      window.addEventListener('load', waitForScript);
-      document.addEventListener('astro:page-load', schedule);
-      document.addEventListener('astro:after-swap', schedule);
-    }
-  })();
-</script>
 
 <meta name="generator" content={Astro.generator} />
 

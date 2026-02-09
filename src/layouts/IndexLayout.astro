@@ -12,23 +12,31 @@ const { title, description } = Astro.props
 
 <BaseLayout title={title} description={description} type="page">
   <BaseHead title={title} description={description} slot="head" />
-  <div class="page-content">
     <GradientMask />
-    <div>
-      <Header />
-    </div>
-    <main>
-      <slot />
-    </main>
+    <Header />
+    <slot />
     {
       themeConfig.general.footer && (
-        <div>
-          <Footer />
-        </div>
+        <Footer />
       )
     }
-  </div>
 </BaseLayout>
+
+<script>
+  import { initShader } from '@/scripts/background-shader';
+
+  function boot() {
+    document.querySelectorAll<HTMLCanvasElement>('.background-shader').forEach((c) => {
+      if (!c.dataset.shaderInit) {
+        c.dataset.shaderInit = '1';
+        initShader(c);
+      }
+    });
+  }
+
+  boot();
+  document.addEventListener('astro:page-load', boot);
+</script>
 
 <style is:global>
   .page-content {

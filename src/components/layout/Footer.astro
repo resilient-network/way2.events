@@ -5,15 +5,7 @@ const today = new Date()
 ---
 
 <footer class="footer card-depth">
-  <div
-    class="footer-unicorn"
-    data-us-project-src="/unicorn/slidebg.json"
-    data-us-production="true"
-    data-us-lazyload="true"
-    data-us-dpi="3"
-    data-us-alttext="Way2 footer background"
-    data-us-arialabel="Animated background scene"
-  ></div>
+  <canvas class="background-shader footer-shader" aria-label="Animated footer background"></canvas>
   <h2 class="loud-text heading-2xl">
     Ready to never lose your friends again? 
   </h2>
@@ -59,19 +51,12 @@ const today = new Date()
     }
   }
 
-  .footer-unicorn {
+  .footer-shader {
     position: absolute;
     inset: -28% -15% 0;
     z-index: 0;
     pointer-events: none;
-    z-index: 0;
     opacity: 0.65;
-  }
-
-  .footer-unicorn canvas,
-  .footer-unicorn video,
-  .footer-unicorn iframe {
-    pointer-events: none;
   }
 
   .footer-inner {

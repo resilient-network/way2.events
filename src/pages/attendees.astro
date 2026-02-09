@@ -9,18 +9,10 @@ import Button from '@/components/ui/Button.astro'
 >
   <main class="landing-page">
     <header class="hero card-depth" aria-labelledby="landing-hero-heading">
-      <div
-        class="hero-unicorn"
-        data-us-project-src="/unicorn/slidebg.json"
-        data-us-production="true"
-        data-us-lazyload="false"
-        data-us-dpi="3"
-        data-us-alttext="Animated Way2 background"
-        data-us-arialabel="Animated hero background scene"
-      ></div>
+      <canvas class="background-shader hero-shader" aria-label="Animated hero background"></canvas>
       <div class="hero-content">
         <img 
-          src="/brand/wordmark.svg" 
+          src="/brand/way2-logo-dark.svg"
           alt="Way2"
           fetchpriority="high"
           loading="eager"
