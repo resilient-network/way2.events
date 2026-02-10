@@ -14,11 +14,11 @@
   --font-size-xs: 11px;
   --font-size-s: 13px;
   --font-size-m: 16px;
-  --font-size-l: 24px;
-  --font-size-xl: 32px;
-  --font-size-2xl: 64px;
-  --font-size-3xl: 96px;
-  --font-size-4xl: 128px;
+  --font-size-l: clamp(1.125rem, 0.5vw + 1rem, 1.5rem);        /* 18px → 24px */
+  --font-size-xl: clamp(1.5rem, 2vw + 0.75rem, 2rem);           /* 24px → 32px */
+  --font-size-2xl: clamp(2rem, 4vw + 0.5rem, 4rem);             /* 32px → 64px */
+  --font-size-3xl: clamp(3rem, 5vw + 1rem, 6rem);               /* 48px → 96px */
+  --font-size-4xl: clamp(4rem, 7vw + 1rem, 8rem);               /* 64px → 128px */
 
   --font-weight-light: 350;
   --font-weight-regular: 400;

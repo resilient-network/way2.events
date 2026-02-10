@@ -44,9 +44,15 @@ const base = import.meta.env.BASE_URL
 <style>
   .footer-section {
     position: relative;
-    padding: 4rem;
+    padding: 2rem 1.5rem;
     margin-top: 4rem;
     overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .footer-section {
+      padding: 4rem;
+    }
   }
 
   .footer-headline-wrapper {

@@ -108,11 +108,17 @@ const navLinks = [
     background: var(--colors-indigo-30);
   }
 
-  @media (max-width: 420px) {
+  @media (max-width: 800px) {
     header {
-      top: 12px;
+      top: auto;
+      bottom: 32px;
+      left: 0;
+      right: 0;
+      justify-content: center;
     }
+  }
 
+  @media (max-width: 420px) {
     .nav-pill {
       padding: 2px;
       gap: 1px;

@@ -66,16 +66,10 @@
 .heading-2xl {
   font-family: var(--font-heading);
   text-transform: uppercase;
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: 700;
   line-height: 100%;
   letter-spacing: 0;
-}
-
-@media (min-width: 768px) {
-  .heading-2xl {
-    font-size: var(--font-size-2xl);
-  }
 }
 
 .body {
