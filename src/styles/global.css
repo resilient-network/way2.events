@@ -60,7 +60,7 @@
 }
 
 html {
-  background-color: var(--colors-ink-0);
+  background-color: var(--colors-indigo-35);
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
   overscroll-behavior-y: contain;
@@ -297,9 +297,6 @@ main {
   width: 100%;
   max-width: var(--content-width);
   margin: 0 auto;
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
 }
 
 @media (min-width: 768px) {
@@ -315,20 +312,7 @@ main {
 }
 
 .grid-cell {
-  padding: 2rem;
-  border-bottom: 1px solid var(--border);
-  border-right: 1px solid var(--border);
   position: relative;
-}
-
-.grid-cell:last-child {
-  border-right: none;
-}
-
-@media (max-width: 767px) {
-  .grid-cell {
-    border-right: none;
-  }
 }
 
 @media (min-width: 768px) {
@@ -380,4 +364,43 @@ main {
 
 .card-depth {
   box-shadow: 0 0 64px -32px rgba(159, 170, 255, 0.30), 0 -0.879px 3.516px -0.879px var(--colors-ink-500, #9B97CE) inset, 0 0.879px 3.516px -0.879px #FFF inset;
+}
+
+.hero {
+  position: relative;
+  padding: 4rem 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  color: var(--colors-ink-100);
+  border: 1px solid var(--colors-indigo-0);
+  background-color: var(--colors-indigo-40);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero img {
+  max-width: 100%;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-shader {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }

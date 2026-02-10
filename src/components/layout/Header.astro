@@ -3,7 +3,6 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/attendees', label: 'Attendees' },
   { href: '/partner-up', label: 'Organizers' },
-  { href: '/mission', label: 'Mission' },
 ]
 
 const normalizePath = (path: string) => {
@@ -27,10 +26,6 @@ const currentPath = normalizePath(Astro.url.pathname)
         </a>
       ))}
     </div>
-
-    <a href="/nye" class="beta-cta glass-panel">
-      <span class="beta-label">NYE 🎉</span>
-    </a>
   </nav>
 </header>
 <style>
