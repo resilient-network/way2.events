@@ -1,6 +1,8 @@
 ---
 import IndexLayout from '@/layouts/IndexLayout.astro'
 import Button from '@/components/ui/Button.astro'
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <IndexLayout
@@ -12,7 +14,7 @@ import Button from '@/components/ui/Button.astro'
       <canvas class="background-shader hero-shader" aria-label="Animated hero background"></canvas>
       <div class="hero-content">
         <img 
-          src="/brand/way2-logo-dark.svg"
+          src={`${base}brand/way2-logo-dark.svg`}
           alt="Way2"
           fetchpriority="high"
           loading="eager"
@@ -40,11 +42,11 @@ import Button from '@/components/ui/Button.astro'
           ariaLabel="Get the Way2 app"
         />
         <div>
-          Organizing a festival? <a href="/partner-up">🤝 Partner Up</a>
+          Organizing a festival? <a href={`${base}partner-up`}>🤝 Partner Up</a>
         </div>
       </div>
       <div class="landing-app-pitch-demo card-depth">
-        <img src="/media/demo-walkthrough.gif" alt="Visual walkthrough of the app" />
+        <img src={`${base}media/demo-walkthrough.gif`} alt="Visual walkthrough of the app" />
       </div>
     </section>
 
@@ -92,7 +94,7 @@ import Button from '@/components/ui/Button.astro'
 
     <section class="highlight-block card-depth" aria-labelledby="highlight-heading">
       <img
-        src="/media/festival-way2-card.png"
+        src={`${base}media/festival-way2-card.png`}
         alt="Festival way2 glowing in blue and purple light"
         class="highlight-image"
       />
@@ -118,7 +120,7 @@ import Button from '@/components/ui/Button.astro'
           <span>Wi-Fi melts down, LTE collapses, and even SOS signals can struggle. Events lose trust, sales, and safety — </span>
           <b style="color: var(--colors-red-80);">you and your crew lose each other.</b>
         </p>
-        <img src="/media/network-failure-card.webp" alt="Phone screen showing lost signal" />
+        <img src={`${base}media/network-failure-card.webp`} alt="Phone screen showing lost signal" />
       </div>
     </section>
 

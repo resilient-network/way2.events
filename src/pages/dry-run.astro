@@ -1,5 +1,6 @@
 ---
 import EmptyLayout from '@/layouts/EmptyLayout.astro'
+const base = import.meta.env.BASE_URL;
 ---
 
 <EmptyLayout 
@@ -108,7 +109,7 @@ import EmptyLayout from '@/layouts/EmptyLayout.astro'
         ✨ When the dust settles… poof! It self-destructs. No data. No trace. Just memories and moon dust
       </p>
       <figure>
-        <img src="/media/demo-walkthrough.gif" alt="Visual walkthrough of the app" />
+        <img src={`${base}media/demo-walkthrough.gif`} alt="Visual walkthrough of the app" />
       </figure>
       <h2>GET STARTED</h2>
       <h3>iOS</h3>
@@ -119,7 +120,7 @@ import EmptyLayout from '@/layouts/EmptyLayout.astro'
       <h3>Android (coming soon)</h3>
       <a class="button" href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header">2026 Waitlist</a>
       <footer style="text-align: center; padding: 20px;">
-        <small>Powered by <a href="/">Way2</a></small>
+        <small>Powered by <a href={base}>Way2</a></small>
       </footer>
     </div>
   </div>

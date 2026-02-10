@@ -6,7 +6,7 @@ import path from 'node:path'
 
 export default defineConfig({
   site: 'https://resilientnet.io',
-  base: '/way2.events',
+  base: '/way2.events/',
   devToolbar: {
     enabled: false
   },

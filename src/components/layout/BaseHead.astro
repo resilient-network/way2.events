@@ -7,26 +7,27 @@ import type { BaseHeadProps } from '@/types/component.types'
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
 const { title, description } = Astro.props as BaseHeadProps
+const base = import.meta.env.BASE_URL
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+<link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Preload critical fonts -->
-<link rel="preload" href="/fonts/InstrumentSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/InclusiveSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href={`${base}fonts/InstrumentSans-Variable.woff2`} as="font" type="font/woff2" crossorigin>
+<link rel="preload" href={`${base}fonts/InclusiveSans-Variable.woff2`} as="font" type="font/woff2" crossorigin>
 <!-- Preload LCP hero image -->
-<link rel="preload" href="/media/embrace.webp" as="image" type="image/webp">
+<link rel="preload" href={`${base}media/embrace.webp`} as="image" type="image/webp">
 <!-- Async load Google Fonts (Silkscreen only) -->
 <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript>
   <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 </noscript>
-<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="sitemap" href={`${base}sitemap-index.xml`} />
 
 <meta name="generator" content={Astro.generator} />
 

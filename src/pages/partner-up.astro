@@ -1,6 +1,8 @@
 ---
 import IndexLayout from '@/layouts/IndexLayout.astro'
 import Button from '@/components/ui/Button.astro'
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <IndexLayout
@@ -11,7 +13,7 @@ import Button from '@/components/ui/Button.astro'
     <canvas class="background-shader hero-shader" aria-label="Animated hero background"></canvas>
       <div class="hero-content">
         <img 
-          src="/brand/way2-logo-dark.svg" 
+          src={`${base}brand/way2-logo-dark.svg`} 
           alt="Way2"
           fetchpriority="high"
           loading="eager"
@@ -40,14 +42,14 @@ import Button from '@/components/ui/Button.astro'
       />
     </div>
     <div class="landing-app-pitch-demo card-depth">
-      <img src="/media/demo-walkthrough.gif" alt="Visual walkthrough of the app" />
+      <img src={`${base}media/demo-walkthrough.gif`} alt="Visual walkthrough of the app" />
     </div>
   </section>
 
   <div class="loud-text heading-2xl">
-    <img class="love-it-heart" src="/media/heart-icon.svg" width="54" height="54" alt="Heart icon" />
+    <img class="love-it-heart" src={`${base}media/heart-icon.svg`} width="54" height="54" alt="Heart icon" />
     Festivals love it
-    <img class="love-it-heart" src="/media/heart-icon.svg" width="54" height="54" alt="Heart icon" />
+    <img class="love-it-heart" src={`${base}media/heart-icon.svg`} width="54" height="54" alt="Heart icon" />
   </div>
 
   <section>
@@ -123,7 +125,7 @@ import Button from '@/components/ui/Button.astro'
       <p>
         <b style="color: var(--colors-red-80);">People don't return.</b>
       </p>
-      <img src="/media/network-failure-card.webp" alt="Phone screen showing lost signal" />
+      <img src={`${base}media/network-failure-card.webp`} alt="Phone screen showing lost signal" />
     </div>
   </section>
 

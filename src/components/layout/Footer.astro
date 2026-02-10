@@ -2,6 +2,7 @@
 import Button from '@/components/ui/Button.astro'
 import { themeConfig } from '@/config'
 const today = new Date()
+const base = import.meta.env.BASE_URL
 ---
 
 <footer class="footer-section">
@@ -26,12 +27,12 @@ const today = new Date()
       </div>
       <div class="cta-group">
         <span class="label-mono">For Organizers</span>
-        <Button href="/partner-up" label="Connect your event" variant="secondary" />
+        <Button href={`${base}partner-up`} label="Connect your event" variant="secondary" />
       </div>
     </div>
 
     <div class="footer-meta">
-      <img src="/brand/logoshape.svg" width="64" height="64" alt="Way2" class="footer-symbol" />
+      <img src={`${base}brand/logoshape.svg`} width="64" height="64" alt="Way2" class="footer-symbol" />
       <span class="copyright">
         &copy; {today.getFullYear()} {themeConfig.site.author}. All rights reserved.
       </span>

@@ -1,3 +1,6 @@
+---
+const base = import.meta.env.BASE_URL;
+---
 <section class="cta-section">
   <div class="cta-content">
     <!-- Disconnected State Visual - Made more prominent -->
@@ -62,7 +65,7 @@
         <p class="cta-subtitle">Join our beta test program</p>
 
         <div class="beta-cta">
-          <a href="/beta-test" class="beta-btn">
+          <a href={`${base}beta-test`} class="beta-btn">
             <span class="btn-text">Join Beta Test</span>
             <span class="btn-arrow">→</span>
           </a>
@@ -77,7 +80,7 @@
           <h3 class="organizer-title">Organizers: Want this at your next event?</h3>
         </div>
         <p class="organizer-subtitle">Partner with us to bring Way2 to your events</p>
-        <a href="/partner-up" class="partner-btn">
+        <a href={`${base}partner-up`} class="partner-btn">
           <span class="btn-text">Partner Up</span>
           <span class="btn-arrow">→</span>
         </a>

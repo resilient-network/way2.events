@@ -1,3 +1,6 @@
+---
+const base = import.meta.env.BASE_URL;
+---
 <section class="hero">
   <div class="hero-content">
     <div class="hero-badge">
@@ -23,7 +26,7 @@
     </p>
 
     <div class="hero-cta">
-      <a href="/beta-test" class="cta-primary"> Join Beta </a>
+      <a href={`${base}beta-test`} class="cta-primary"> Join Beta </a>
       <a href="#video-demo" class="cta-secondary"> See Demo ▶️ </a>
     </div>
   </div>

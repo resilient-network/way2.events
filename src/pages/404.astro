@@ -1,5 +1,6 @@
 ---
 import IndexLayout from '@/layouts/IndexLayout.astro'
+const base = import.meta.env.BASE_URL;
 ---
 
 <IndexLayout title={`404 - Way2`} description="Page not found - Way2">
@@ -23,7 +24,7 @@ import IndexLayout from '@/layouts/IndexLayout.astro'
       </p>
 
       <div class="error-actions">
-        <a href="/" class="back-home-btn">
+        <a href={base} class="back-home-btn">
           <span class="btn-text">Back to Home</span>
           <span class="btn-arrow">→</span>
         </a>

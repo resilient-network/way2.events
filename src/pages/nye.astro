@@ -1,6 +1,7 @@
 ---
 import IndexLayout from '@/layouts/IndexLayout.astro'
 import Button from '@/components/ui/Button.astro'
+const base = import.meta.env.BASE_URL;
 ---
 <IndexLayout
   title="Countdown to 2026 - Way2"
@@ -11,7 +12,7 @@ import Button from '@/components/ui/Button.astro'
     <canvas class="background-shader hero-shader" aria-label="Animated hero background"></canvas>
     <div class="hero-content">
       <img 
-        src="/brand/way2-logo-dark.svg" 
+        src={`${base}brand/way2-logo-dark.svg`} 
         alt="Way2"
         fetchpriority="high"
         loading="eager"
@@ -29,12 +30,12 @@ import Button from '@/components/ui/Button.astro'
 
   <section class="nye-side-by-side">
     <div class="event-poster-blcok">  
-      <img src="/media/nye2025-substation.png" alt="NYE with TGM" style="width: 400px; height: auto;" />
+      <img src={`${base}media/nye2025-substation.png`} alt="NYE with TGM" style="width: 400px; height: auto;" />
     </div>
     <div class="getapp-block">
-      <a class="getapp-qr" href="/getapp" aria-label="Open /getapp">
+      <a class="getapp-qr" href={`${base}getapp`} aria-label="Open /getapp">
         <img
-          src="/media/get-app-qr.svg"
+          src={`${base}media/get-app-qr.svg`}
           alt="QR code to open Way2 app download page"
           width="240"
           height="240"
@@ -42,7 +43,7 @@ import Button from '@/components/ui/Button.astro'
           decoding="async"
         />
       </a>
-      <Button href="/getapp" label="Get the App" variant="primary" />
+      <Button href={`${base}getapp`} label="Get the App" variant="primary" />
     </div>
   </section>
 
