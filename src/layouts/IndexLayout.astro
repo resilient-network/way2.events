@@ -27,25 +27,73 @@ const { title, description } = Astro.props
 <script>
   import { initShader } from '@/scripts/background-shader';
 
+  type ShaderInstance = ReturnType<typeof initShader>;
+  type ShaderRuntime = {
+    instances: Map<HTMLCanvasElement, ShaderInstance>;
+    bootBound: boolean;
+  };
+  type IdleCallbackWindow = Window & {
+    requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+  };
+
+  const runtimeKey = '__way2ShaderRuntime__';
+  const win = window as Window & {
+    [runtimeKey]?: ShaderRuntime;
+  };
+  const idleWin = window as IdleCallbackWindow;
+  const runtime =
+    win[runtimeKey] ??
+    (win[runtimeKey] = {
+      instances: new Map<HTMLCanvasElement, ShaderInstance>(),
+      bootBound: false,
+    });
+
+  function cleanupDetachedCanvases() {
+    runtime.instances.forEach((instance, canvas) => {
+      if (!document.contains(canvas)) {
+        instance.destroy();
+        runtime.instances.delete(canvas);
+        delete canvas.dataset.shaderInit;
+      }
+    });
+  }
+
+  function initMissingCanvases() {
+    document.querySelectorAll<HTMLCanvasElement>('.background-shader').forEach((canvas) => {
+      if (!runtime.instances.has(canvas)) {
+        const instance = initShader(canvas);
+        runtime.instances.set(canvas, instance);
+        canvas.dataset.shaderInit = '1';
+      }
+    });
+  }
+
   function boot() {
     const init = () => {
-      document.querySelectorAll<HTMLCanvasElement>('.background-shader').forEach((c) => {
-        if (!c.dataset.shaderInit) {
-          c.dataset.shaderInit = '1';
-          initShader(c);
-        }
-      });
+      cleanupDetachedCanvases();
+      initMissingCanvases();
     };
     // Defer shader init to avoid blocking main thread during load
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(init);
+    if (idleWin.requestIdleCallback) {
+      idleWin.requestIdleCallback(init);
     } else {
       setTimeout(init, 100);
     }
   }
 
+  if (!runtime.bootBound) {
+    runtime.bootBound = true;
+    document.addEventListener('astro:page-load', boot);
+    window.addEventListener('pagehide', () => {
+      runtime.instances.forEach((instance, canvas) => {
+        instance.destroy();
+        delete canvas.dataset.shaderInit;
+      });
+      runtime.instances.clear();
+    });
+  }
+
   boot();
-  document.addEventListener('astro:page-load', boot);
 </script>
 
 <style is:global>

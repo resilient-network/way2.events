@@ -21,10 +21,13 @@ out vec4 fragColor;
 uniform float uTime;
 uniform vec2  uResolution;
 
-const float PI = 3.14159265359;
-
 // ink-90: hsla(249, 100%, 93%)
 const vec3 HUE = vec3(0.859, 0.839, 1.0);
+const mat3 BCC_MAT = mat3(
+  0.788675134594813, -0.211324865405187, -0.577350269189626,
+ -0.211324865405187,  0.788675134594813, -0.577350269189626,
+  0.577350269189626,  0.577350269189626,  0.577350269189626
+);
 
 vec4 permute(vec4 t) { return t * (t * 34.0 + 133.0); }
 
@@ -63,23 +66,20 @@ vec4 bccPart(vec3 X) {
 }
 
 vec4 bccNoise(vec3 X) {
-  mat3 m = mat3(
-    0.788675134594813, -0.211324865405187, -0.577350269189626,
-   -0.211324865405187,  0.788675134594813, -0.577350269189626,
-    0.577350269189626,  0.577350269189626,  0.577350269189626);
-  X = m * X;
+  X = BCC_MAT * X;
   vec4 r = bccPart(X) + bccPart(X + 144.5);
-  return vec4(r.xyz * m, r.w);
+  return vec4(r.xyz * BCC_MAT, r.w);
 }
 
 float bayer(vec2 px, float scale) {
   float val = 0.0, div = 0.0, mul = 1.0;
+  float sz = 8.0 / scale;
   for (int lev = 4; lev >= 1; lev--) {
-    float sz = exp2(float(lev)) * 0.5 / scale;
     vec2 bc = mod(floor(px / sz), 2.0);
     mul *= 4.0;
     val += mix(bc.x * 2.0, 3.0 - bc.x * 2.0, bc.y) / 3.0 * mul;
     div += mul;
+    sz *= 0.5;
   }
   return val / div - 0.006;
 }
@@ -88,7 +88,6 @@ float rand(vec2 co) { return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5
 
 void main() {
   float ar = uResolution.x / uResolution.y;
-  vec2 fragCoord = vUv * uResolution;
   vec2 st = (vUv - 0.5) * vec2(ar, 1.0);
   float t = uTime * 0.12;
 
@@ -106,7 +105,7 @@ void main() {
   float intensity = smoothstep(-0.15, 0.65, raw) * 0.55;
 
   // Bayer dither (3 quantization levels)
-  float dith = bayer(fragCoord, 0.25);
+  float dith = bayer(gl_FragCoord.xy, 0.25);
   intensity = floor(intensity * 3.0 + dith) / 3.0;
   intensity += (rand(vUv) - 0.5) / 255.0;
   intensity = clamp(intensity, 0.0, 1.0);
@@ -120,7 +119,15 @@ interface ShaderInstance {
   destroy: () => void;
 }
 
+type IdleCallbackWindow = Window & {
+  requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+};
+
+const BACKGROUND_FPS = 24;
+const FRAME_INTERVAL_MS = 1000 / BACKGROUND_FPS;
+
 export function initShader(canvas: HTMLCanvasElement): ShaderInstance {
+  const idleWin = window as IdleCallbackWindow;
   const gl = canvas.getContext('webgl2', {
     alpha: true,
     premultipliedAlpha: true,
@@ -177,6 +184,7 @@ export function initShader(canvas: HTMLCanvasElement): ShaderInstance {
       canvas.width  = w;
       canvas.height = h;
     }
+    gl.uniform2f(uRes, canvas.width, canvas.height);
   }
 
   const ro = new ResizeObserver(resize);
@@ -184,42 +192,90 @@ export function initShader(canvas: HTMLCanvasElement): ShaderInstance {
   resize();
 
   let visible = true;
+  let pageVisible = document.visibilityState === 'visible';
   const io = new IntersectionObserver(
-    (entries) => { visible = entries[0]?.isIntersecting ?? true; },
+    (entries) => {
+      visible = entries[0]?.isIntersecting ?? true;
+      syncLoop();
+    },
     { threshold: 0 },
   );
   io.observe(canvas);
 
   let raf = 0;
+  let running = false;
+  let destroyed = false;
   const t0 = performance.now();
+  let lastDraw = 0;
 
-  function frame() {
-    raf = requestAnimationFrame(frame);
-    if (!visible) return;
-
-    const elapsed = (performance.now() - t0) * 0.001;
+  function draw(now: number) {
+    const elapsed = (now - t0) * 0.001;
     gl!.viewport(0, 0, canvas.width, canvas.height);
-    gl!.clear(gl!.COLOR_BUFFER_BIT);
     gl!.uniform1f(uTime, elapsed);
-    gl!.uniform2f(uRes, canvas.width, canvas.height);
     gl!.drawArrays(gl!.TRIANGLES, 0, 3);
+  }
+
+  function shouldRun() {
+    return visible && pageVisible && !destroyed;
+  }
+
+  function stopLoop() {
+    if (!running) return;
+    running = false;
+    cancelAnimationFrame(raf);
+    raf = 0;
+  }
+
+  function frame(now: number) {
+    if (!running) return;
+    if (now - lastDraw >= FRAME_INTERVAL_MS) {
+      const frameDrift = (now - lastDraw) % FRAME_INTERVAL_MS;
+      lastDraw = now - frameDrift;
+      draw(now);
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  function startLoop() {
+    if (running || !shouldRun()) return;
+    running = true;
+    const now = performance.now();
+    lastDraw = now - FRAME_INTERVAL_MS;
+    raf = requestAnimationFrame(frame);
+  }
+
+  function syncLoop() {
+    if (shouldRun()) {
+      startLoop();
+      return;
+    }
+    stopLoop();
+  }
+
+  function onVisibilityChange() {
+    pageVisible = document.visibilityState === 'visible';
+    syncLoop();
   }
 
   function start() {
     resize();
-    frame();
+    syncLoop();
   }
 
-  if ('requestIdleCallback' in window) {
-    (window as any).requestIdleCallback(start, { timeout: 2000 });
+  if (idleWin.requestIdleCallback) {
+    idleWin.requestIdleCallback(start, { timeout: 2000 });
   } else {
     setTimeout(start, 200);
   }
 
+  document.addEventListener('visibilitychange', onVisibilityChange);
+
   function destroy() {
-    cancelAnimationFrame(raf);
+    destroyed = true;
+    stopLoop();
     ro.disconnect();
     io.disconnect();
+    document.removeEventListener('visibilitychange', onVisibilityChange);
     gl!.deleteProgram(prog);
     gl!.deleteShader(vs);
     gl!.deleteShader(fs);
