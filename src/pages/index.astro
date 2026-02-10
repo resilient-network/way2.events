@@ -243,7 +243,7 @@ import BackgroundShader from '@/components/ui/BackgroundShader.astro'
         </div>
 
         <blockquote class="pull-quote scroll-reveal">
-          <p>&ldquo;The bigger the crowd, the better it works.&rdquo;</p>
+          <p>The bigger the crowd, the better it works.</p>
           <Button
             href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
             label="Get the App"
@@ -259,25 +259,49 @@ import BackgroundShader from '@/components/ui/BackgroundShader.astro'
     <!-- ════════════════════════════════════════════ -->
     <!-- (03) TESTIMONIALS                           -->
     <!-- ════════════════════════════════════════════ -->
-    <span class="section-label label-mono grid-full scroll-reveal" style="text-align:center;">(03) — What People Say</span>
+    <section class="testimonials-section grid-full" aria-label="Testimonials">
+      
+      <h3 class="heading-display scroll-reveal" style="text-align:center;">
+        What People Say
+      </h3>
 
-    <div class="testimonial-hero grid-full scroll-reveal">
-      <blockquote>
-        <p>&ldquo;Safety is our biggest concern. Way2 is a game changer.&rdquo;</p>
-        <cite>— Event Organizer</cite>
-      </blockquote>
-    </div>
+      <div class="testimonials-grid">
+        <!-- Featured testimonial -->
+        <blockquote class="testimonial-card testimonial-featured scroll-reveal">
+          <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
+          <p class="testimonial-text">Safety is our biggest concern. Way2 is a game&nbsp;changer.</p>
+          <footer class="testimonial-footer">
+            <div class="testimonial-meta">
+              <cite class="testimonial-name">Event Organizer</cite>
+              <span class="testimonial-role">Music Festival, Oregon</span>
+            </div>
+          </footer>
+        </blockquote>
 
-    <div class="testimonial-pair scroll-reveal">
-      <blockquote class="testimonial-small">
-        <p>&ldquo;Dude, I needed this at the gorge last weekend.&rdquo;</p>
-        <cite>— Festival Attendee</cite>
-      </blockquote>
-      <blockquote class="testimonial-small">
-        <p>&ldquo;Finally, reliable comms without the cell tower overload.&rdquo;</p>
-        <cite>— Production Manager</cite>
-      </blockquote>
-    </div>
+        <!-- Secondary testimonials -->
+        <blockquote class="testimonial-card testimonial-secondary scroll-reveal">
+          <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
+          <p class="testimonial-text">Dude, I needed this at the gorge last&nbsp;weekend.</p>
+          <footer class="testimonial-footer">
+            <div class="testimonial-meta">
+              <cite class="testimonial-name">Festival Attendee</cite>
+              <span class="testimonial-role">The Gorge Amphitheatre</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card testimonial-secondary scroll-reveal">
+          <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
+          <p class="testimonial-text">Finally, reliable comms without the cell tower&nbsp;overload.</p>
+          <footer class="testimonial-footer">
+            <div class="testimonial-meta">
+              <cite class="testimonial-name">Production Manager</cite>
+              <span class="testimonial-role">Live Events, Nashville</span>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
 
   </main>
 </IndexLayout>
@@ -1081,61 +1105,105 @@ import BackgroundShader from '@/components/ui/BackgroundShader.astro'
   }
 
   /* ─── TESTIMONIALS ─── */
-  .testimonial-hero {
-    text-align: center;
-    padding: 2rem 0 4rem;
+  .testimonials-section {
+    padding: 2rem 1.5rem 6rem;
   }
 
-  .testimonial-hero blockquote {
-    margin: 0;
-  }
-
-  .testimonial-hero p {
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-size: clamp(1.5rem, 3vw + 0.5rem, 3rem);
-    line-height: 1.15;
-    color: var(--colors-ink-100);
-    margin: 0 auto 1.5rem;
-    max-width: 22ch;
-  }
-
-  .testimonial-hero cite,
-  .testimonial-small cite {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--colors-teal-95);
-    font-style: normal;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .testimonial-pair {
-    grid-column: 1 / -1;
+  .testimonials-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
-    padding-bottom: 6rem;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   @media (min-width: 768px) {
-    .testimonial-pair {
-      grid-column: 2 / 12;
+    .testimonials-grid {
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 1.5rem;
     }
   }
 
-  .testimonial-small {
+  /* ─ Card base ─ */
+  .testimonial-card {
+    position: relative;
     margin: 0;
-    border-left: 2px solid var(--colors-teal-95);
-    padding-left: 1.5rem;
+    padding: 2.5rem 2rem 2rem;
+    border-radius: 1.25rem;
+    background: var(--colors-ink-90);
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    overflow: hidden;
   }
 
-  .testimonial-small p {
-    font-size: 1.25rem;
-    line-height: 1.4;
-    margin: 0 0 0.75rem;
-    color: rgba(255, 255, 255, 0.9);
+  .testimonial-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-featured {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ─ Decorative quote mark ─ */
+  .testimonial-quote-mark {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--colors-indigo-30);
+    margin-bottom: -0.5rem;
+    user-select: none;
+  }
+
+  /* ─ Quote text ─ */
+  .testimonial-text {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 2vw + 0.25rem, 1.75rem);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--colors-indigo-30);
+    margin: 0 0 2rem;
+    max-width: 36ch;
+  }
+
+  .testimonial-featured .testimonial-text {
+    font-size: clamp(1.5rem, 3vw + 0.25rem, 2.5rem);
+    line-height: 1.2;
+    max-width: 28ch;
+  }
+
+  /* ─ Footer with avatar + meta ─ */
+  .testimonial-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .testimonial-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .testimonial-name {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-style: normal;
+    color: var(--colors-ink-30);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .testimonial-role {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--colors-ink-30);
+    letter-spacing: 0.06em;
   }
 </style>
