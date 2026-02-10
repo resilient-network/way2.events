@@ -4,27 +4,19 @@ import Button from '@/components/ui/Button.astro'
 ---
 
 <IndexLayout
-  title="Partner Up - Totem Grid"
-  description="Turn your event up to 11 with Totem Grid. Reliable connectivity to ensure event safety, simplify logistics, and elevate attendee experiences."
+  title="Partner Up - Way2"
+  description="Turn your event up to 11 with Way2. Reliable connectivity to ensure event safety, simplify logistics, and elevate attendee experiences."
 >
   <header class="hero card-depth" aria-labelledby="landing-hero-heading">
-    <div
-      class="hero-unicorn"
-      data-us-project-src="/unicorn/slidebg.json"
-      data-us-production="true"
-      data-us-lazyload="false"
-      data-us-dpi="3"
-      data-us-alttext="Animated Totem Grid background"
-      data-us-arialabel="Animated hero background scene"
-    ></div>
-    <div class="hero-content">
-      <img 
-        src="/brand/wordmark.svg" 
-        alt="Totem Grid"
-        fetchpriority="high"
-        loading="eager"
-      />
-    </div>
+    <canvas class="background-shader hero-shader" aria-label="Animated hero background"></canvas>
+      <div class="hero-content">
+        <img 
+          src="/brand/way2-logo-dark.svg" 
+          alt="Way2"
+          fetchpriority="high"
+          loading="eager"
+        />
+      </div>
   </header>
   <section class="landing-app-pitch">
     <div class="landing-app-pitch-content">
@@ -37,7 +29,7 @@ import Button from '@/components/ui/Button.astro'
         <div style="color: var(--colors-ink-20);">Improve safety, profitability&nbsp;&&nbsp;vibes </div> with our low-lift connectivity solution
       </h2>
       <div>
-        Streamline your logistics & improve attendee experience by launching your own turn-key Totem Grid event network
+        Streamline your logistics & improve attendee experience by launching your own turn-key Way2 event network
       </div>
       <Button
         href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
@@ -137,7 +129,7 @@ import Button from '@/components/ui/Button.astro'
 
   <section>
     <p class="body-l" style="color: var(--colors-ink-30); text-align: center; max-width: 540px; margin: 0 auto 16px;">
-      Totem Grid connects phones directly, creating a living, breathing local network that thrives in dense crowds —&nbsp;
+      Way2 connects phones directly, creating a living, breathing local network that thrives in dense crowds —&nbsp;
       <b style="color: var(--colors-indigo-40);">the&nbsp;bigger&nbsp;the&nbsp;crowd&nbsp;gets, the&nbsp;better&nbsp;it&nbsp;works.</b>
     </p>
     <div class="loud-text heading-2xl">Turn your event<br/> up to 11</div>
@@ -212,6 +204,7 @@ import Button from '@/components/ui/Button.astro'
     border-radius: 12px;
     border: 1px solid var(--colors-bright-ink-70, #ABA4E3);
     background: var(--colors-ink-99, #FCF8FF);
+    color: var(--colors-ink-10);
     box-shadow: 0 0.879px 35.156px 7.031px var(--colors-ink-150, #E4E0FA), 0 -0.879px 3.516px -0.879px var(--colors-Ink-500, #9B97CE) inset, 0 0.879px 3.516px -0.879px #FFF inset;
   }
 

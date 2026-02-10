@@ -14,7 +14,7 @@ import { themeConfig } from '@/config'
   <main class="waitlist-page">
     <div class="waitlist-container">
       <div class="waitlist-header" id="waitlistHeader">
-        <h1>Become a Pioneer for TotemGrid!</h1>
+        <h1>Become a Pioneer for Way2!</h1>
         <p class="subtitle">
           Be among the first to experience our platform. Sign up now and we'll notify you when we launch.
         </p>
@@ -31,14 +31,14 @@ import { themeConfig } from '@/config'
           <div class="social-links">
             <p class="social-text">Follow us for updates!</p>
             <div class="social-icons">
-              <a href="https://instagram.com/totemgrid" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+              <a href="https://instagram.com/way2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
                 </svg>
               </a>
-              <a href="https://twitter.com/totemgrid" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter">
+              <a href="https://twitter.com/way2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
                 </svg>
@@ -592,8 +592,8 @@ import { themeConfig } from '@/config'
       document.getElementById('waitlistForm')!.style.display = 'none'
       document.getElementById('successContainer')!.style.display = 'block'
       
-      // Get the totem_ref_id from response
-      const totemRefId = result.totem_ref_id
+      // Get the way2_ref_id from response (fallback to totem_ref_id for backward compatibility)
+      const way2RefId = result.way2_ref_id || result.totem_ref_id
       
       // Setup copy link button with referral parameter
       const copyBtn = document.getElementById('copyLinkBtn')
@@ -601,7 +601,7 @@ import { themeConfig } from '@/config'
       copyBtn?.addEventListener('click', async () => {
         try {
           const baseUrl = window.location.origin + window.location.pathname
-          const referralUrl = `${baseUrl}?referral=${totemRefId}`
+          const referralUrl = `${baseUrl}?referral=${way2RefId}`
           await navigator.clipboard.writeText(referralUrl)
           copyText!.textContent = 'Copied!'
           copyBtn!.classList.add('copied')

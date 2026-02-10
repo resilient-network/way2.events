@@ -12,35 +12,95 @@ const { title, description } = Astro.props
 
 <BaseLayout title={title} description={description} type="page">
   <BaseHead title={title} description={description} slot="head" />
-  <div class="page-content">
     <GradientMask />
-    <div>
-      <Header />
-    </div>
-    <main>
+    <Header />
+    <div class="page-container">
       <slot />
-    </main>
+    </div>
     {
       themeConfig.general.footer && (
-        <div>
-          <Footer />
-        </div>
+        <Footer />
       )
     }
-  </div>
 </BaseLayout>
 
-<style is:global>
-  .page-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+<script>
+  import { initShader } from '@/scripts/background-shader';
+
+  type ShaderInstance = ReturnType<typeof initShader>;
+  type ShaderRuntime = {
+    instances: Map<HTMLCanvasElement, ShaderInstance>;
+    bootBound: boolean;
+  };
+  type IdleCallbackWindow = Window & {
+    requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+  };
+
+  const runtimeKey = '__way2ShaderRuntime__';
+  const win = window as Window & {
+    [runtimeKey]?: ShaderRuntime;
+  };
+  const idleWin = window as IdleCallbackWindow;
+  const runtime =
+    win[runtimeKey] ??
+    (win[runtimeKey] = {
+      instances: new Map<HTMLCanvasElement, ShaderInstance>(),
+      bootBound: false,
+    });
+
+  function cleanupDetachedCanvases() {
+    runtime.instances.forEach((instance, canvas) => {
+      if (!document.contains(canvas)) {
+        instance.destroy();
+        runtime.instances.delete(canvas);
+        delete canvas.dataset.shaderInit;
+      }
+    });
   }
 
-  .page-content main {
+  function initMissingCanvases() {
+    document.querySelectorAll<HTMLCanvasElement>('.background-shader').forEach((canvas) => {
+      if (!runtime.instances.has(canvas)) {
+        const instance = initShader(canvas);
+        runtime.instances.set(canvas, instance);
+        canvas.dataset.shaderInit = '1';
+      }
+    });
+  }
+
+  function boot() {
+    const init = () => {
+      cleanupDetachedCanvases();
+      initMissingCanvases();
+    };
+    // Defer shader init to avoid blocking main thread during load
+    if (idleWin.requestIdleCallback) {
+      idleWin.requestIdleCallback(init);
+    } else {
+      setTimeout(init, 100);
+    }
+  }
+
+  if (!runtime.bootBound) {
+    runtime.bootBound = true;
+    document.addEventListener('astro:page-load', boot);
+    window.addEventListener('pagehide', () => {
+      runtime.instances.forEach((instance, canvas) => {
+        instance.destroy();
+        delete canvas.dataset.shaderInit;
+      });
+      runtime.instances.clear();
+    });
+  }
+
+  boot();
+</script>
+
+<style is:global>
+  .page-container {
+    width: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 72px;
   }
 </style>

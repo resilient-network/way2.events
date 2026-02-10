@@ -3,11 +3,11 @@ import type { ThemeConfig } from './types'
 export const themeConfig: ThemeConfig = {
   // SITE INFO ///////////////////////////////////////////////////////////////////////////////////////////
   site: {
-    website: 'https://www.totemgrid.io', // Site domain
-    title: 'Totem Grid', // Site title
-    author: 'Totem Grid', // Author name
+    website: 'https://www.way2.io', // Site domain
+    title: 'Way2', // Site title
+    author: 'Way2', // Author name
     description:
-      'Find your tribe, instantly. Seamless connection at crowded events, no compass or cell service required.', // Site description
+      'Lose Yourself, Not Your Friends. P2P mesh networking for crowded events - phones connect directly when cell networks fail.', // Site description
     language: 'en-US' // Default language
   },
 
@@ -21,8 +21,8 @@ export const themeConfig: ThemeConfig = {
     fadeAnimation: true // Enable fade animations
   },
 
-  // TOTEM GRID SPECIFIC SETTINGS ///////////////////////////////////////////////////////////////////////
-  totemGrid: {
+  // WAY2 SPECIFIC SETTINGS //////////////////////////////////////////////////////////////////////////////
+  way2: {
     betaSignupEnabled: true, // Enable beta signup form
     videoDemo: true, // Show video demo section
     testimonials: true // Show testimonials section

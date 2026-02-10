@@ -17,8 +17,8 @@ export interface GeneralSettings {
   fadeAnimation: boolean
 }
 
-// Totem Grid specific settings configuration type
-export interface TotemGridSettings {
+// Way2 specific settings configuration type
+export interface Way2Settings {
   betaSignupEnabled: boolean
   videoDemo: boolean
   testimonials: boolean
@@ -28,5 +28,5 @@ export interface TotemGridSettings {
 export interface ThemeConfig {
   site: SiteInfo
   general: GeneralSettings
-  totemGrid: TotemGridSettings
+  way2: Way2Settings
 }

@@ -4,24 +4,16 @@ import Button from '@/components/ui/Button.astro'
 ---
 
 <IndexLayout
-  title="Totem Grid — Lose Yourself, Not Your Friends"
+  title="Way2 — Lose Yourself, Not Your Friends"
   description="Find your friends at crowded events — no compass or cell service required."
 >
   <main class="landing-page">
     <header class="hero card-depth" aria-labelledby="landing-hero-heading">
-      <div
-        class="hero-unicorn"
-        data-us-project-src="/unicorn/slidebg.json"
-        data-us-production="true"
-        data-us-lazyload="false"
-        data-us-dpi="3"
-        data-us-alttext="Animated Totem Grid background"
-        data-us-arialabel="Animated hero background scene"
-      ></div>
+      <canvas class="background-shader hero-shader" aria-label="Animated hero background"></canvas>
       <div class="hero-content">
         <img 
-          src="/brand/wordmark.svg" 
-          alt="Totem Grid"
+          src="/brand/way2-logo-dark.svg"
+          alt="Way2"
           fetchpriority="high"
           loading="eager"
         />
@@ -45,7 +37,7 @@ import Button from '@/components/ui/Button.astro'
           label="Get the app"
           variant="primary"
           icon="▶"
-          ariaLabel="Get the Totem Grid app"
+          ariaLabel="Get the Way2 app"
         />
         <div>
           Organizing a festival? <a href="/partner-up">🤝 Partner Up</a>
@@ -100,12 +92,12 @@ import Button from '@/components/ui/Button.astro'
 
     <section class="highlight-block card-depth" aria-labelledby="highlight-heading">
       <img
-        src="/media/festival-totem-card.png"
-        alt="Festival totem glowing in blue and purple light"
+        src="/media/festival-way2-card.png"
+        alt="Festival way2 glowing in blue and purple light"
         class="highlight-image"
       />
       <div class="highlight-content">
-        <div class="heading-2xl">We digitized the festival totem</div>
+        <div class="heading-2xl">We digitized the festival way2</div>
         <div class="heading-l">Just an app – no extra hardware</div>
       </div>
     </section>
@@ -132,7 +124,7 @@ import Button from '@/components/ui/Button.astro'
 
     <section>
       <p class="body-l" style="color: var(--colors-ink-30); text-align: center; max-width: 540px; margin: 0 auto 16px;">
-        Totem Grid connects phones directly, creating a living, breathing local network that thrives in dense crowds —&nbsp;
+        Way2 connects phones directly, creating a living, breathing local network that thrives in dense crowds —&nbsp;
         <b style="color: var(--colors-indigo-40);">the&nbsp;bigger&nbsp;the&nbsp;crowd&nbsp;gets, the&nbsp;better&nbsp;it&nbsp;works.</b>
       </p>
       <div class="loud-text heading-2xl">Lose yourself,<br/> not&nbsp;your&nbsp;friends</div>
@@ -208,6 +200,7 @@ import Button from '@/components/ui/Button.astro'
     border-radius: 12px;
     border: 1px solid var(--colors-bright-ink-70, #ABA4E3);
     background: var(--colors-ink-99, #FCF8FF);
+    color: var(--colors-ink-10);
     box-shadow: 0 0.879px 35.156px 7.031px var(--colors-ink-150, #E4E0FA), 0 -0.879px 3.516px -0.879px var(--colors-Ink-500, #9B97CE) inset, 0 0.879px 3.516px -0.879px #FFF inset;
   }
 

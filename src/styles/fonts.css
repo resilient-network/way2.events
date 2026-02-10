@@ -1,3 +1,35 @@
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/InstrumentSans-Variable.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/InstrumentSans-Italic-Variable.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inclusive Sans';
+  src: url('/fonts/InclusiveSans-Variable.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inclusive Sans';
+  src: url('/fonts/InclusiveSans-Italic-Variable.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 .sans {
   font-family: var(--font-sans);
 }
@@ -7,31 +39,35 @@
 }
 
 .heading {
+  font-family: var(--font-heading);
   text-transform: uppercase;
   font-size: var(--font-size-m);
-  font-weight: 644;
+  font-weight: 600;
   line-height: 100%;
   letter-spacing: 0;
 }
 
 .heading-l {
+  font-family: var(--font-heading);
   font-size: var(--font-size-l);
   font-weight: 600;
   line-height: 120%;
 }
 
 .heading-xl {
+  font-family: var(--font-heading);
   text-transform: uppercase;
   font-size: var(--font-size-xl);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 100%;
   letter-spacing: 0;
 }
 
 .heading-2xl {
+  font-family: var(--font-heading);
   text-transform: uppercase;
   font-size: var(--font-size-xl);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 100%;
   letter-spacing: 0;
 }

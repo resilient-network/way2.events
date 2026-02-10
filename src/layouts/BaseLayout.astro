@@ -7,13 +7,8 @@ import type { LayoutProps } from '@/types'
 
 type Props = LayoutProps
 
-// const { type = 'page' } = Astro.props
 const language = themeConfig.site.language || 'en-US'
-const contentWidth = themeConfig.general.contentWidth
 const fadeAnimation = themeConfig.general.fadeAnimation
-const widthValue = Math.min(parseFloat(contentWidth), 60)
-const shouldUseCustomWidth = widthValue > 25
-const finalWidth = shouldUseCustomWidth ? `${widthValue}rem` : '25rem'
 ---
 
 <html lang={language}>
@@ -21,18 +16,10 @@ const finalWidth = shouldUseCustomWidth ? `${widthValue}rem` : '25rem'
     {fadeAnimation && <ClientRouter />}
     <slot name="head" />
   </head>
-  <body
-    data-centered={themeConfig.general.centeredLayout}
-    style={`
-      max-width: ${finalWidth};
-      ${shouldUseCustomWidth ? `--content-width: ${widthValue}rem;` : ''}
-    `}
-  >
+  <body>
     <ThemeManager />
     <FaviconThemeSwitcher />
-    <div class="layout-wrapper">
-      <slot />
-    </div>
+    <slot />
   </body>
 </html>
 

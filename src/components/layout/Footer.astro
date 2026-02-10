@@ -4,123 +4,105 @@ import { themeConfig } from '@/config'
 const today = new Date()
 ---
 
-<footer class="footer card-depth">
-  <div
-    class="footer-unicorn"
-    data-us-project-src="/unicorn/slidebg.json"
-    data-us-production="true"
-    data-us-lazyload="true"
-    data-us-dpi="3"
-    data-us-alttext="Totem Grid footer background"
-    data-us-arialabel="Animated background scene"
-  ></div>
-  <h2 class="loud-text heading-2xl">
-    Ready to never lose your friends again? 
-  </h2>
-  <div class="footer-inner">
-    <img src="/brand/logoshape.svg" width="280" height="280" alt="Totem Grid" class="footer-symbol" />
+<footer class="footer-section">
+  <div class="footer-grid">
+    
+    <div class="footer-headline-wrapper">
+      <h2 class="heading-display footer-headline">
+        Ready to never lose your friends again?
+      </h2>
+    </div>
 
-    <div class="footer-cta">
+    <div class="footer-actions">
       <div class="cta-group">
-        <span class="cta-eyebrow">For those who go to festivals</span>
+        <span class="label-mono">For Attendees</span>
         <Button
           href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
           label="Join our beta"
           variant="primary"
           icon="▶"
-          ariaLabel="Join the Totem Grid beta"
+          ariaLabel="Join the Way2 beta"
         />
       </div>
       <div class="cta-group">
-        <span class="cta-eyebrow">For those who organize them</span>
+        <span class="label-mono">For Organizers</span>
         <Button href="/partner-up" label="Connect your event" variant="secondary" />
       </div>
     </div>
+
+    <div class="footer-meta">
+      <img src="/brand/logoshape.svg" width="64" height="64" alt="Way2" class="footer-symbol" />
+      <span class="copyright">
+        &copy; {today.getFullYear()} {themeConfig.site.author}. All rights reserved.
+      </span>
+    </div>
+
   </div>
 </footer>
-<span class="meta-text">
-  &copy; {today.getFullYear()} {themeConfig.site.author}. All rights reserved.
-</span>
-<style>
-  .footer {
-    margin-top: 64px;
-    position: relative;
-    border-radius: 16px;
-    background: var(--colors-indigo-40);
-    overflow: hidden;
-    border: 1px solid var(--colors-indigo-0);
-    padding-top: 40px;
-    padding-bottom: 40px;
 
-    .loud-text {
-      position: relative;
-      z-index: 1000;
-      color: var(--colors-ink-100);
+<style>
+  .footer-section {
+    position: relative;
+    padding: 4rem;
+    margin-top: 4rem;
+    overflow: hidden;
+  }
+
+  .footer-headline-wrapper {
+    grid-column: 1 / -1;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-headline-wrapper {
+      grid-column: 2 / 12;
     }
   }
 
-  .footer-unicorn {
-    position: absolute;
-    inset: -28% -15% 0;
-    z-index: 0;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.65;
+  .footer-headline {
+    font-size: clamp(3rem, 8vw, 8rem);
+    color: var(--colors-ink-100);
+    margin: 0 auto;
+    text-align: center;
+    max-width: 20ch;
   }
 
-  .footer-unicorn canvas,
-  .footer-unicorn video,
-  .footer-unicorn iframe {
-    pointer-events: none;
-  }
-
-  .footer-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    gap: 2rem;
-    padding: 2rem;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .footer-symbol {
-    width: 280px;
-    height: auto;
-  }
-
-  .footer-cta {
+  .footer-actions {
+    grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
-    max-width: 320px;
-    gap: 24px;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-actions {
+      flex-direction: row;
+      justify-content: center;
+      gap: 4rem;
+    }
   }
 
   .cta-group {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-
-    .button {
-      width: 100%;
-    }
+    align-items: center;
+    gap: 1rem;
   }
 
-  .cta-eyebrow {
-    color: var(--colors-ink-90);
-    font-size: var(--font-size-m);
-    font-weight: 600;
-    text-align: center;
-  }
-
-  .meta-text {
+  .footer-meta {
+    grid-column: 1 / -1;
     display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    color: var(--colors-ink-20);
-    font-size: var(--font-size-xs);
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
   }
 
+  .copyright {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
 </style>
