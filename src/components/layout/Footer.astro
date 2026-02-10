@@ -38,8 +38,6 @@ const today = new Date()
     </div>
 
   </div>
-  
-  <canvas class="background-shader footer-shader" aria-label="Animated footer background"></canvas>
 </footer>
 
 <style>
@@ -64,8 +62,9 @@ const today = new Date()
   .footer-headline {
     font-size: clamp(3rem, 8vw, 8rem);
     color: var(--colors-ink-100);
-    margin: 0;
+    margin: 0 auto;
     text-align: center;
+    max-width: 20ch;
   }
 
   .footer-actions {
@@ -105,14 +104,5 @@ const today = new Date()
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-  }
-
-  .footer-shader {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.5;
-    mix-blend-mode: overlay;
   }
 </style>
