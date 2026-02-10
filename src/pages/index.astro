@@ -4,6 +4,73 @@ import Button from '@/components/ui/Button.astro'
 import BackgroundShader from '@/components/ui/BackgroundShader.astro'
 
 const base = import.meta.env.BASE_URL;
+// Keep testimonials anonymous until explicit approval is provided.
+// Once approved, update attribution.name/role/org per quote.
+const testimonials = [
+  {
+    quote: 'Safety is our biggest concern',
+    featured: true,
+    attribution: {
+      name: 'Beta program organizer',
+      role: null,
+      org: null
+    }
+  },
+  {
+    quote: "We've been looking for a platform that does this",
+    featured: false,
+    attribution: {
+      name: 'Beta program organizer',
+      role: null,
+      org: null
+    }
+  },
+  {
+    quote: 'An upgraded Walkie Talkie',
+    featured: false,
+    attribution: {
+      name: 'Beta program organizer',
+      role: null,
+      org: null
+    }
+  },
+  {
+    quote: 'Game Changer!',
+    featured: false,
+    attribution: {
+      name: 'Beta program organizer',
+      role: null,
+      org: null
+    }
+  },
+  {
+    quote: 'Dude, I needed this at the gorge last weekend',
+    featured: false,
+    attribution: {
+      name: 'Beta program attendee',
+      role: null,
+      org: null
+    }
+  },
+  {
+    quote: "Finally, we've needed someone to solve this for so long",
+    featured: false,
+    attribution: {
+      name: 'Beta program attendee',
+      role: null,
+      org: null
+    }
+  },
+  {
+    quote: "I can't wait to send this to my friends",
+    featured: false,
+    attribution: {
+      name: 'Beta program attendee',
+      role: null,
+      org: null
+    }
+  }
+];
 ---
 
 <IndexLayout
@@ -72,7 +139,7 @@ const base = import.meta.env.BASE_URL;
         <span class="org-label label-mono scroll-reveal">(01) — For Organizers</span>
 
         <h2 id="org-heading" class="heading-display org-heading scroll-reveal">
-          Keep Your Event Connected When It Matters Most
+          Keep your event connected when it matters most
         </h2>
 
         <p class="org-intro scroll-reveal">
@@ -270,44 +337,26 @@ const base = import.meta.env.BASE_URL;
     <section class="testimonials-section grid-full" aria-label="Testimonials">
       
       <h3 class="heading-display scroll-reveal" style="text-align:center;">
-        What People Say
+        What People Are Saying
       </h3>
 
       <div class="testimonials-grid">
-        <!-- Featured testimonial -->
-        <blockquote class="testimonial-card testimonial-featured scroll-reveal">
-          <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
-          <p class="testimonial-text">Safety is our biggest concern. Way2 is a game&nbsp;changer.</p>
-          <footer class="testimonial-footer">
-            <div class="testimonial-meta">
-              <cite class="testimonial-name">Event Organizer</cite>
-              <span class="testimonial-role">Music Festival, Oregon</span>
-            </div>
-          </footer>
-        </blockquote>
-
-        <!-- Secondary testimonials -->
-        <blockquote class="testimonial-card testimonial-secondary scroll-reveal">
-          <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
-          <p class="testimonial-text">Dude, I needed this at the gorge last&nbsp;weekend.</p>
-          <footer class="testimonial-footer">
-            <div class="testimonial-meta">
-              <cite class="testimonial-name">Festival Attendee</cite>
-              <span class="testimonial-role">The Gorge Amphitheatre</span>
-            </div>
-          </footer>
-        </blockquote>
-
-        <blockquote class="testimonial-card testimonial-secondary scroll-reveal">
-          <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
-          <p class="testimonial-text">Finally, reliable comms without the cell tower&nbsp;overload.</p>
-          <footer class="testimonial-footer">
-            <div class="testimonial-meta">
-              <cite class="testimonial-name">Production Manager</cite>
-              <span class="testimonial-role">Live Events, Nashville</span>
-            </div>
-          </footer>
-        </blockquote>
+        {testimonials.map((testimonial) => (
+          <blockquote class:list={['testimonial-card', testimonial.featured && 'testimonial-featured', 'scroll-reveal']}>
+            <span class="testimonial-quote-mark" aria-hidden="true">&ldquo;</span>
+            <p class="testimonial-text">{testimonial.quote}</p>
+            <footer class="testimonial-footer">
+              <div class="testimonial-meta">
+                <cite class="testimonial-name">{testimonial.attribution.name}</cite>
+                <span class="testimonial-role">
+                  {testimonial.attribution.org
+                    ? `${testimonial.attribution.role}, ${testimonial.attribution.org}`
+                    : testimonial.attribution.role}
+                </span>
+              </div>
+            </footer>
+          </blockquote>
+        ))}
       </div>
     </section>
 
@@ -566,7 +615,7 @@ const base = import.meta.env.BASE_URL;
 
   .hero-headline {
     margin: 0;
-    max-width: 18ch;
+    max-width: 22ch;
   }
 
   .hero-footer {
@@ -648,6 +697,7 @@ const base = import.meta.env.BASE_URL;
   .org-heading {
     color: var(--colors-indigo-40);
     margin: 0 0 2rem;
+    max-width: 25ch;
   }
 
   /* Intro */
@@ -1150,6 +1200,7 @@ const base = import.meta.env.BASE_URL;
     gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
+    align-items: start;
   }
 
   @media (min-width: 768px) {
@@ -1162,6 +1213,9 @@ const base = import.meta.env.BASE_URL;
   /* ─ Card base ─ */
   .testimonial-card {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 14rem;
     margin: 0;
     padding: 2.5rem 2rem 2rem;
     border-radius: 1.25rem;
@@ -1212,11 +1266,16 @@ const base = import.meta.env.BASE_URL;
     max-width: 28ch;
   }
 
+  .testimonial-featured {
+    min-height: 16rem;
+  }
+
   /* ─ Footer with avatar + meta ─ */
   .testimonial-footer {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    margin-top: auto;
   }
 
   .testimonial-meta {
