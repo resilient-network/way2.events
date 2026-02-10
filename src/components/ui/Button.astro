@@ -1,107 +1,108 @@
----
-interface ButtonProps {
-  href: string
-  label: string
-  variant?: 'primary' | 'secondary' | 'glass'
-  icon?: string
-  ariaLabel?: string
-  target?: string
-  rel?: string
-}
-
-const {
-  href,
-  label,
-  variant = 'primary',
-  icon,
-  ariaLabel,
-  target,
-  rel,
-} = Astro.props as ButtonProps
----
-
-<a
-  href={href}
-  class={`cta-button cta-button--${variant}`}
-  aria-label={ariaLabel}
-  target={target}
-  rel={rel}
->
-  {icon && (
-    <span class="cta-button__icon" aria-hidden="true">
-      {icon}
-    </span>
-  )}
-  <span class="cta-button__label">{label}</span>
-</a>
-
-<style>
-  .cta-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    padding: 1rem 2rem;
-    border-radius: 999px;
-    font-family: var(--font-sans);
-    font-size: 16px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid transparent;
-    position: relative;
-    white-space: nowrap;
-    font-weight: 500;
-    line-height: 1;
-    transition: all 0.2s ease;
+  ---
+  interface ButtonProps {
+    href: string
+    label: string
+    variant?: 'primary' | 'secondary' | 'glass'
+    icon?: string
+    ariaLabel?: string
+    target?: string
+    rel?: string
   }
 
-  .cta-button__icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    line-height: 1;
-  }
+  const {
+    href,
+    label,
+    variant = 'primary',
+    icon,
+    ariaLabel,
+    target,
+    rel,
+  } = Astro.props as ButtonProps
+  ---
 
-  .cta-button--primary {
-    background: var(--colors-indigo-40);
-    color: var(--colors-ink-100);
-    border-color: var(--colors-indigo-40);
-  }
+  <a
+    href={href}
+    class={`cta-button cta-button--${variant}`}
+    aria-label={ariaLabel}
+    target={target}
+    rel={rel}
+  >
+    {icon && (
+      <span class="cta-button__icon" aria-hidden="true">
+        {icon}
+      </span>
+    )}
+    <span class="cta-button__label">{label}</span>
+  </a>
 
-  .cta-button--primary:hover {
-    background: var(--colors-indigo-30);
-    border-color: var(--colors-indigo-30);
-  }
+  <style>
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid transparent;
+      position: relative;
+      white-space: nowrap;
+      font-weight: 500;
+      line-height: 1;
+      transition: all 0.2s ease;
+    }
 
-  .cta-button--secondary {
-    background: transparent;
-    color: var(--colors-teal-95);
-    border-color: var(--colors-teal-95);
-  }
+    .cta-button__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
 
-  .cta-button--secondary:hover {
-    background: rgba(117, 241, 234, 0.1);
-  }
+    .cta-button--primary {
+      background: var(--colors-indigo-100);
+      color: var(--colors-indigo-40);
+      border-color: var(--colors-ink-100);
+    }
 
-  .cta-button--glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--colors-ink-100);
-  }
+    .cta-button--primary:hover {
+      background: var(--colors-teal-80);
+      border-color: var(--colors-teal-80);
+    }
 
-  .cta-button--glass:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
+    .cta-button--secondary {
+      background: transparent;
+      backdrop-filter: blur(32px);
+      color: var(--colors-teal-95);
+      border-color: var(--colors-teal-95);
+    }
 
-  .cta-button:active {
-    transform: scale(0.98);
-  }
+    .cta-button--secondary:hover {
+      background: rgba(117, 241, 234, 0.1);
+    }
 
-  .cta-button:focus-visible {
-    outline: 2px solid var(--colors-teal-95);
-    outline-offset: 2px;
-  }
-</style>
+    .cta-button--glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--colors-ink-100);
+    }
+
+    .cta-button--glass:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .cta-button:active {
+      transform: scale(0.98);
+    }
+
+    .cta-button:focus-visible {
+      outline: 2px solid var(--colors-teal-95);
+      outline-offset: 2px;
+    }
+  </style>

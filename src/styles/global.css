@@ -3,7 +3,7 @@
 
 :root {
   /* Max Content Width */
-  --content-width: 1440px;
+  --content-width: 2560px;
 
   /* Typography */
   --font-heading: 'Instrument Sans', sans-serif;
@@ -60,7 +60,7 @@
 }
 
 html {
-  background-color: var(--colors-indigo-35);
+  background-color: var(--colors-indigo-40);
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
   overscroll-behavior-y: contain;
@@ -252,18 +252,12 @@ main {
 }
 
 .glass-panel {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border);
-  color: var(--colors-ink-100);
+  background: var(--colors-ink-70);
+  color: var(--colors-ink-0);
 }
 
 .glass-panel-dark {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--colors-ink-10);
   color: var(--colors-ink-100);
 }
 
@@ -290,56 +284,41 @@ main {
   }
 }
 
-/* Editorial Grid Layout */
+/* Editorial Grid Layout — 12-column */
 .editorial-grid {
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
   max-width: var(--content-width);
   margin: 0 auto;
+  padding: 0;
 }
 
 @media (min-width: 768px) {
   .editorial-grid {
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 1.5rem;
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 2000px) {
   .editorial-grid {
-    grid-template-columns: 420px 1fr;
+    padding: 6rem;
+    column-gap: 2rem;
   }
 }
 
-.grid-cell {
-  position: relative;
-}
-
-@media (min-width: 768px) {
-  .display-cell {
-    grid-column: 1;
-    grid-row: 2 / 6;
-    border-right: 1px solid var(--border);
-  }
-
-  .main-col {
-    grid-column: 2;
-    border-right: none;
-  }
-  
-  .hero-cell,
-  .full-width {
-    grid-column: 1 / -1;
-    border-right: none;
-  }
+/* Grid placement utilities */
+.grid-full {
+  grid-column: 1 / -1;
 }
 
 .heading-display {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 5vw + 1rem, var(--font-size-4xl));
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: var(--spacing-tight);
+  font-size: clamp(2.5rem, 6vw + 1rem, 6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  overflow-wrap: break-word;
 }
 
 .label-mono {
@@ -366,6 +345,7 @@ main {
   box-shadow: 0 0 64px -32px rgba(159, 170, 255, 0.30), 0 -0.879px 3.516px -0.879px var(--colors-ink-500, #9B97CE) inset, 0 0.879px 3.516px -0.879px #FFF inset;
 }
 
+/* Legacy hero classes — used by partner-up, attendees, etc. */
 .hero {
   position: relative;
   padding: 4rem 2rem;
@@ -381,20 +361,6 @@ main {
 
 .hero img {
   max-width: 100%;
-}
-
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 .hero-shader {

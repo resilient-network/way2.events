@@ -1,30 +1,31 @@
 ---
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/attendees', label: 'Attendees' },
-  { href: '/partner-up', label: 'Organizers' },
+  { href: '#organizers', label: 'Organizers' },
+  { href: '#attendees', label: 'Attendees' },
 ]
-
-const normalizePath = (path: string) => {
-  const trimmed = path.replace(/\/+$/, '')
-  return trimmed === '' ? '/' : trimmed
-}
-
-const currentPath = normalizePath(Astro.url.pathname)
 ---
 
 <header>
-  <nav class="nav">
+  <nav class="nav" aria-label="Main navigation">
     <div class="nav-pill glass-panel" role="menubar">
       {navLinks.map(({ href, label }) => (
         <a
           href={href}
-          class={`nav-link${normalizePath(href) === currentPath ? ' is-active' : ''}`}
+          class="nav-link"
           role="menuitem"
         >
           {label}
         </a>
       ))}
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
+        class="nav-cta"
+        role="menuitem"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Book a Demo
+      </a>
     </div>
   </nav>
 </header>
@@ -32,11 +33,11 @@ const currentPath = normalizePath(Astro.url.pathname)
   header {
     position: fixed;
     top: 24px;
-    left: 0;
-    right: 0;
+    left: 24px;
+    right: 24px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     z-index: 10000;
     pointer-events: none;
   }
@@ -53,52 +54,58 @@ const currentPath = normalizePath(Astro.url.pathname)
   .nav-pill {
     display: flex;
     padding: 4px;
-    justify-content: center;
     align-items: center;
     border-radius: 999px;
-    gap: 4px;
-    flex-wrap: wrap;
+    gap: 2px;
     max-width: calc(100vw - 32px);
-
-    .nav-link {
-      color: var(--colors-ink-100);
-      text-decoration: none;
-      font-family: var(--font-sans);
-      font-size: 14px;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 999px;
-      transition: all 0.2s ease;
-      opacity: 0.8;
-    
-      &:hover {
-        opacity: 1;
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      &.is-active {
-        background: var(--colors-indigo-40);
-        color: var(--colors-ink-100);
-        opacity: 1;
-      }
-    }
   }
 
-  .beta-cta {
+  .nav-logo {
     display: flex;
-    padding: 0 16px;
-    justify-content: center;
     align-items: center;
+    padding: 6px 12px;
     border-radius: 999px;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--colors-ink-100);
-    transition: all 0.2s ease;
+  }
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
+  .nav-logo img {
+    display: block;
+    height: 16px;
+    width: auto;
+  }
+
+  .nav-link {
+    color: var(--colors-indigo-30);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-cta {
+    color: var(--colors-ink-100);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--colors-indigo-40);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .nav-cta:hover {
+    background: var(--colors-indigo-30);
   }
 
   @media (max-width: 420px) {
@@ -106,23 +113,24 @@ const currentPath = normalizePath(Astro.url.pathname)
       top: 12px;
     }
 
-    .nav {
-      gap: 6px;
-    }
-
     .nav-pill {
       padding: 2px;
+      gap: 1px;
       max-width: calc(100vw - 24px);
     }
 
-    .nav-pill .nav-link {
+    .nav-logo img {
+      height: 14px;
+    }
+
+    .nav-link {
       font-size: 12px;
       padding: 6px 10px;
     }
 
-    .beta-cta {
-      padding: 0 10px;
-      font-size: 12px;
+    .nav-cta {
+      font-size: 11px;
+      padding: 6px 10px;
     }
   }
 

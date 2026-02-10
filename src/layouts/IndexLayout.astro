@@ -14,7 +14,9 @@ const { title, description } = Astro.props
   <BaseHead title={title} description={description} slot="head" />
     <GradientMask />
     <Header />
-    <slot />
+    <div class="page-container">
+      <slot />
+    </div>
     {
       themeConfig.general.footer && (
         <Footer />
@@ -26,12 +28,20 @@ const { title, description } = Astro.props
   import { initShader } from '@/scripts/background-shader';
 
   function boot() {
-    document.querySelectorAll<HTMLCanvasElement>('.background-shader').forEach((c) => {
-      if (!c.dataset.shaderInit) {
-        c.dataset.shaderInit = '1';
-        initShader(c);
-      }
-    });
+    const init = () => {
+      document.querySelectorAll<HTMLCanvasElement>('.background-shader').forEach((c) => {
+        if (!c.dataset.shaderInit) {
+          c.dataset.shaderInit = '1';
+          initShader(c);
+        }
+      });
+    };
+    // Defer shader init to avoid blocking main thread during load
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(init);
+    } else {
+      setTimeout(init, 100);
+    }
   }
 
   boot();
@@ -39,16 +49,10 @@ const { title, description } = Astro.props
 </script>
 
 <style is:global>
-  .page-content {
+  .page-container {
+    width: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
-  }
-
-  .page-content main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 72px;
   }
 </style>

@@ -4,17 +4,18 @@ import { themeConfig } from '@/config'
 const today = new Date()
 ---
 
-<footer class="footer card-depth">
-  <canvas class="background-shader footer-shader" aria-label="Animated footer background"></canvas>
-  <h2 class="loud-text heading-2xl">
-    Ready to never lose your friends again? 
-  </h2>
-  <div class="footer-inner">
-    <img src="/brand/logoshape.svg" width="280" height="280" alt="Way2" class="footer-symbol" />
+<footer class="footer-section">
+  <div class="footer-grid editorial-grid">
+    
+    <div class="footer-headline-wrapper">
+      <h2 class="heading-display footer-headline">
+        Ready to never lose your friends again?
+      </h2>
+    </div>
 
-    <div class="footer-cta">
+    <div class="footer-actions">
       <div class="cta-group">
-        <span class="cta-eyebrow">For those who go to festivals</span>
+        <span class="label-mono">For Attendees</span>
         <Button
           href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
           label="Join our beta"
@@ -24,99 +25,94 @@ const today = new Date()
         />
       </div>
       <div class="cta-group">
-        <span class="cta-eyebrow">For those who organize them</span>
+        <span class="label-mono">For Organizers</span>
         <Button href="/partner-up" label="Connect your event" variant="secondary" />
       </div>
     </div>
-  </div>
-</footer>
-<span class="meta-text">
-  &copy; {today.getFullYear()} {themeConfig.site.author}. All rights reserved.
-</span>
-<style>
-  .footer {
-    margin-top: 64px;
-    position: relative;
-    border-radius: 16px;
-    background: var(--colors-indigo-40);
-    overflow: hidden;
-    border: 1px solid var(--colors-indigo-0);
-    padding-top: 40px;
-    padding-bottom: 40px;
 
-    .loud-text {
-      position: relative;
-      z-index: 1000;
-      color: var(--colors-ink-100);
-      max-width: var(--content-width);
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 2rem;
-      padding-right: 2rem;
+    <div class="footer-meta">
+      <img src="/brand/logoshape.svg" width="64" height="64" alt="Way2" class="footer-symbol" />
+      <span class="copyright">
+        &copy; {today.getFullYear()} {themeConfig.site.author}. All rights reserved.
+      </span>
+    </div>
+
+  </div>
+  
+  <canvas class="background-shader footer-shader" aria-label="Animated footer background"></canvas>
+</footer>
+
+<style>
+  .footer-section {
+    position: relative;
+    padding: 4rem;
+    margin-top: 4rem;
+    overflow: hidden;
+  }
+
+  .footer-headline-wrapper {
+    grid-column: 1 / -1;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-headline-wrapper {
+      grid-column: 2 / 12;
     }
   }
 
-  .footer-shader {
-    position: absolute;
-    inset: -28% -15% 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.65;
+  .footer-headline {
+    font-size: clamp(3rem, 8vw, 8rem);
+    color: var(--colors-ink-100);
+    margin: 0;
+    text-align: center;
   }
 
-  .footer-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    gap: 2rem;
-    padding: 2rem;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: var(--content-width);
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .footer-symbol {
-    width: 280px;
-    height: auto;
-  }
-
-  .footer-cta {
+  .footer-actions {
+    grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
-    max-width: 320px;
-    gap: 24px;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-actions {
+      flex-direction: row;
+      justify-content: center;
+      gap: 4rem;
+    }
   }
 
   .cta-group {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-
-    .button {
-      width: 100%;
-    }
+    align-items: center;
+    gap: 1rem;
   }
 
-  .cta-eyebrow {
-    color: var(--colors-ink-90);
-    font-size: var(--font-size-m);
-    font-weight: 600;
-    text-align: center;
-  }
-
-  .meta-text {
+  .footer-meta {
+    grid-column: 1 / -1;
     display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    color: var(--colors-ink-20);
-    font-size: var(--font-size-xs);
-    max-width: var(--content-width);
-    margin-left: auto;
-    margin-right: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
   }
 
+  .copyright {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-shader {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+  }
 </style>

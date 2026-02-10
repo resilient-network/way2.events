@@ -5,256 +5,369 @@ import BackgroundShader from '@/components/ui/BackgroundShader.astro'
 ---
 
 <IndexLayout
-  title="Way2 — Lose Yourself, Not Your Friends"
-  description="Find your friends at crowded events — no compass or cell service required."
+  title="Way2 — The Network for Crowd-Scale Events"
+  description="Reliable communication and coordination for live events. Way2 provides a resilient mesh network for live event organizers and attendees — no cell service required."
 >
   <BackgroundShader />
-  
-  <main class="landing-page editorial-grid">
-    <!-- Hero Section -->
-    <div class="grid-cell hero-cell">
-      <div class="hero-image-container">
-        <picture>
-          <source
-            media="(max-width: 767px)"
-            srcset="/media/embrace-mobile.png"
-          />
-          <img 
-            src="/media/embrace.png" 
-            alt="Crowd embrace" 
-            class="hero-bg-image"
+
+  <main class="editorial-grid">
+
+    <!-- ════════════════════════════════════════════ -->
+    <!-- HERO                                        -->
+    <!-- ════════════════════════════════════════════ -->
+    <section class="hero-section grid-full" aria-labelledby="hero-heading">
+      <div class="hero-frame">
+        <picture class="hero-bg-image">
+          <source type="image/webp" srcset="/media/embrace.webp" />
+          <img
+            src="/media/embrace.png"
+            alt="Two people embracing in a crowd at a live event"
+            width="1440"
+            height="810"
+            fetchpriority="high"
           />
         </picture>
-        <div class="hero-overlay"></div>
-      </div>
-      
-      <div class="hero-logo-container">
-        <img 
-          src="/brand/way2-logo-light.svg" 
-          alt="Way2"
-          class="hero-logo"
-          width="140"
-        />
-      </div>
 
-      <div class="hero-content">
-        <h1 class="heading-display">
-          The Network for Crowd-Scale Events
-        </h1>
-        <div class="hero-footer">
-          <p class="hero-subhead">
-            Reliable communication when the network fails.<br />
-            <span class="text-highlight">No compass or cell service required.</span>
+        <div class="hero-content">
+          <h1 id="hero-heading" class="heading-display hero-headline">
+            The Crowd-Scale Network for Live Events
+          </h1>
+          <div class="hero-footer">
+            <p class="hero-subhead">
+              Reliable communication and coordination for live events.<br />
+              <span class="text-highlight">No compass or cell service required.</span>
+            </p>
+            <div class="hero-actions">
+              <Button href="#organizers" label="For Organizers" variant="primary" />
+              <Button href="#attendees" label="For Attendees" variant="secondary" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="network-break grid-full scroll-reveal" aria-label="The problem Way2 solves">
+      <div class="network-break-inner">
+        <h3 class="heading-display network-break-heading">
+          When the network dies,<br />everyone feels it
+        </h3>
+        <div class="network-break-body">
+          <p>
+            Network failure means frustrated fans, disrupted operations, and lost revenue.
+            In the worst case, lives are at risk and PR nightmares erupt.
           </p>
-          
-          <div class="hero-actions">
-            <Button
-              href="/partner-up"
-              label="For Organizers"
-              variant="primary"
-              icon="🛡️"
-            />
-            <Button
-              href="/attendees"
-              label="For Attendees"
-              variant="secondary"
-              icon="👋"
-            />
-          </div>
+          <p class="network-break-kicker">People don't return.</p>
         </div>
       </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════ -->
+    <!-- (01) ORGANIZERS                             -->
+    <!-- ════════════════════════════════════════════ -->
+    <span class="section-label label-mono scroll-reveal" id="organizers">(01) — For Organizers</span>
+
+    <h2 class="heading-display section-heading organizer-heading scroll-reveal">
+      Secure Your Event
+    </h2>
+
+    <p class="body-editorial section-body scroll-reveal">
+      Typical networks fail when they are needed most. Way2 provides a dedicated, resilient mesh network for your event operations and attendee safety.
+    </p>
+
+    <div class="demo-device scroll-reveal">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        width="220"
+        height="470"
+        aria-label="Way2 app walkthrough showing friend-finding and chat features"
+      >
+        <source src="/media/demo-walkthrough-loop.webm" type="video/webm" />
+        <source src="/media/demo-walkthrough.mp4" type="video/mp4" />
+      </video>
     </div>
 
-    <!-- Sidebar / Sticky Progress -->
-    <div class="grid-cell desktop-only glass-panel-dark display-cell">
-       <div class="sticky-content">
-         <div class="display-group">
-            <span class="label-mono">System Status</span>
-            <span class="display-value">ONLINE</span>
-         </div>
-         <div class="display-group">
-            <span class="label-mono">Latency</span>
-            <span class="display-value">0.02ms</span>
-         </div>
-         <div class="display-group mt-auto">
-            <span class="label-mono">Scroll</span>
-            <div class="scroll-line"></div>
-         </div>
-       </div>
+    <div class="feature-grid scroll-reveal" role="list" aria-label="Organizer features">
+      <article class="feature-card glass-panel-dark" role="listitem" style="--i:0">
+        <span class="feature-icon" aria-hidden="true">✅</span>
+        <h3 class="feature-title">Easy Setup</h3>
+        <p>We handle setup and logistics so you can focus on delivering an unforgettable event.</p>
+      </article>
+      <article class="feature-card glass-panel-dark" role="listitem" style="--i:1">
+        <span class="feature-icon" aria-hidden="true">🛡️</span>
+        <h3 class="feature-title">Safety, Simplified</h3>
+        <p>Improve emergency response with precise attendee locations and reliable communications.</p>
+      </article>
+      <article class="feature-card glass-panel-dark" role="listitem" style="--i:2">
+        <span class="feature-icon" aria-hidden="true">📡</span>
+        <h3 class="feature-title">Superior Coordination</h3>
+        <p>Better communication tools that beat walkie-talkies — simple, reliable, no training required.</p>
+      </article>
+      <article class="feature-card glass-panel-dark" role="listitem" style="--i:3">
+        <span class="feature-icon" aria-hidden="true">💸</span>
+        <h3 class="feature-title">App Profitability</h3>
+        <p>Turn your event app into a revenue generator instead of an expense.</p>
+      </article>
+      <article class="feature-card glass-panel-dark" role="listitem" style="--i:4">
+        <span class="feature-icon" aria-hidden="true">🗺️</span>
+        <h3 class="feature-title">Custom Interactive Maps</h3>
+        <p>Intuitive maps and waypoints ensure seamless navigation to premium amenities.</p>
+      </article>
+      <article class="feature-card glass-panel-dark" role="listitem" style="--i:5">
+        <span class="feature-icon" aria-hidden="true">📱</span>
+        <h3 class="feature-title">Premium Branded Experience</h3>
+        <p>Deliver exclusive, branded digital experiences for your community.</p>
+      </article>
     </div>
 
-    <!-- Organizer Section (01) -->
-    <div class="grid-cell content-cell glass-panel main-col">
-      <span class="label-mono">(01) — For Organizers</span>
-      <h2 class="heading-display">Secure the<br />Experience</h2>
+    <div class="organizer-cta scroll-reveal">
       <p class="body-editorial">
-        Typical networks fail when they are needed most. Way2 provides a dedicated, resilient mesh network for your event operations and attendee safety.
+        Way2 connects phones directly, creating a living, breathing local network that thrives in dense crowds — <strong class="text-highlight">the bigger the crowd, the better it works.</strong>
       </p>
-      <ul class="feature-list">
-        <li><span class="icon">🛡️</span> Coordinate help in emergencies</li>
-        <li><span class="icon">📶</span> Venue-wide scalability</li>
-        <li><span class="icon">⚡</span> 99.999% Uptime</li>
+      <Button
+        href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
+        label="Book a Demo"
+        variant="primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      />
+    </div>
+
+    <!-- ════════════════════════════════════════════ -->
+    <!-- (02) ATTENDEES                              -->
+    <!-- ════════════════════════════════════════════ -->
+    <span class="section-label label-mono scroll-reveal" id="attendees">(02) — For Attendees</span>
+
+    <h2 class="heading-display section-heading attendee-heading scroll-reveal">
+      Lose Yourself,<br />Not Your Friends
+    </h2>
+
+    <div class="phone-cluster scroll-reveal">
+      <img
+        class="phone-mockup phone-chat"
+        src="/media/tg-proto-chat.webp"
+        alt="Way2 chat interface showing group messaging in a crowd"
+        width="280"
+        height="600"
+        loading="lazy"
+        decoding="async"
+      />
+      <img
+        class="phone-mockup phone-ar"
+        src="/media/tg-proto-ar.webp"
+        alt="Way2 AR view showing friend locations overlaid on camera"
+        width="280"
+        height="600"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <div class="attendee-features scroll-reveal">
+      <ul class="feature-list" role="list">
+        <li><span class="feature-icon" aria-hidden="true">✈️</span> <strong>Works in Airplane Mode</strong> — No connectivity? No problem.</li>
+        <li><span class="feature-icon" aria-hidden="true">📍</span> <strong>Friend Finding</strong> — Precise directions to your crew, anywhere in the crowd.</li>
+        <li><span class="feature-icon" aria-hidden="true">🗺️</span> <strong>Event Maps</strong> — Find stages, vendors, toilets... your tent!</li>
+        <li><span class="feature-icon" aria-hidden="true">🛟</span> <strong>Safety Check-ins</strong> — Get help or notify your group instantly.</li>
+        <li><span class="feature-icon" aria-hidden="true">🔐</span> <strong>Private</strong> — Only the friends you add can see you.</li>
       </ul>
-      <div class="action-wrapper">
-        <Button
-          href="/partner-up"
-          label="Partner Up"
-          variant="primary"
-        />
-      </div>
+      <Button
+        href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
+        label="Get the App"
+        variant="secondary"
+        target="_blank"
+        rel="noopener noreferrer"
+      />
     </div>
 
-    <div class="grid-cell visual-cell main-col">
-      <figure class="network-card">
-        <img 
-          src="/media/network-failure-card.webp" 
-          alt="Phone screen showing lost signal"
-          loading="lazy"
-          width="300"
-        />
-        <figcaption class="label-mono">Fig 1. Network Failure</figcaption>
-      </figure>
-    </div>
+    <blockquote class="pull-quote scroll-reveal">
+      <p>&ldquo;The bigger the crowd, the better it works.&rdquo;</p>
+    </blockquote>
 
-    <!-- Attendee Section (02) -->
-    <div class="grid-cell visual-cell glass-panel-dark mobile-order-2 main-col">
-       <div class="phone-cluster">
-          <img class="phone-mockup chat-view"
-            src="/media/tg-proto-chat.webp"
-            alt="Chat view"
-            loading="lazy"
-          />
-          <img class="phone-mockup ar-view"
-            src="/media/tg-proto-ar.webp"
-            alt="AR view"
-            loading="lazy"
-          />
-       </div>
-    </div>
+    <!-- ════════════════════════════════════════════ -->
+    <!-- (03) TESTIMONIALS                           -->
+    <!-- ════════════════════════════════════════════ -->
+    <span class="section-label label-mono grid-full scroll-reveal" style="text-align:center;">(03) — What People Say</span>
 
-    <div class="grid-cell content-cell glass-panel mobile-order-1 main-col">
-      <span class="label-mono">(02) — For Attendees</span>
-      <h2 class="heading-display">Lose Yourself,<br />Not Your Friends</h2>
-      <p class="body-editorial">
-        Way2 connects phones directly, creating a living, breathing local network that thrives in dense crowds.
-      </p>
-      <blockquote class="quote-text">
-        "The bigger the crowd, the better it works."
+    <div class="testimonial-hero grid-full scroll-reveal">
+      <blockquote>
+        <p>&ldquo;Safety is our biggest concern. Way2 is a game changer.&rdquo;</p>
+        <cite>— Event Organizer</cite>
       </blockquote>
-      <div class="action-wrapper">
-        <Button
-          href="/attendees"
-          label="Get the App"
-          variant="secondary"
-        />
-      </div>
     </div>
 
-    <!-- Testimonials -->
-    <div class="grid-cell full-width glass-panel">
-      <span class="label-mono center-text" style="display:block; margin-bottom: 2rem;">(03) — Testimonials</span>
-      <h2 class="heading-display center-text" style="font-size: var(--font-size-3xl);">Festivals Love It</h2>
-      
-      <div class="testimonials-flow">
-        <div class="testimonial-large">
-          <p>"Safety is our biggest concern. Way2 is a game changer."</p>
-          <cite>— Event Organizer</cite>
-        </div>
-        <div class="testimonial-row">
-          <div class="testimonial-small">
-            <p>"Dude, I needed this at the gorge last weekend."</p>
-            <cite>— Festival Attendee</cite>
-          </div>
-          <div class="testimonial-small">
-            <p>"Finally, reliable comms without the cell tower overload."</p>
-            <cite>— Production Manager</cite>
-          </div>
-        </div>
-      </div>
+    <div class="testimonial-pair scroll-reveal">
+      <blockquote class="testimonial-small">
+        <p>&ldquo;Dude, I needed this at the gorge last weekend.&rdquo;</p>
+        <cite>— Festival Attendee</cite>
+      </blockquote>
+      <blockquote class="testimonial-small">
+        <p>&ldquo;Finally, reliable comms without the cell tower overload.&rdquo;</p>
+        <cite>— Production Manager</cite>
+      </blockquote>
     </div>
 
   </main>
 </IndexLayout>
 
+<!-- Scroll reveal observer -->
+<script>
+  function initScrollReveal() {
+    const els = document.querySelectorAll('.scroll-reveal');
+    if (!els.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    els.forEach((el) => observer.observe(el));
+  }
+
+  initScrollReveal();
+  document.addEventListener('astro:page-load', initScrollReveal);
+</script>
+
 <style>
-  .hero-cell {
+  /* ─── Scroll Reveal ─── */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  /* Staggered delays for cinematic entrance */
+  .section-label.scroll-reveal { transition-delay: 0ms; }
+  .section-heading.scroll-reveal { transition-delay: 100ms; }
+  .section-body.scroll-reveal { transition-delay: 200ms; }
+  .feature-grid.scroll-reveal { transition-delay: 300ms; }
+
+  .scroll-reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* ─── Section Labels ─── */
+  .section-label {
     grid-column: 1 / -1;
-    min-height: 100dvh;
+    padding-top: 6rem;
+    scroll-margin-top: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-label {
+      grid-column: 2 / 5;
+      padding-top: 8rem;
+    }
+  }
+
+  /* ─── Section Headings ─── */
+  .section-heading {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .organizer-heading {
+      grid-column: 2 / 9;
+    }
+    .attendee-heading {
+      grid-column: 5 / 13;
+      text-align: right;
+    }
+  }
+
+  /* ─── Section Body ─── */
+  .section-body {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .section-body {
+      grid-column: 2 / 7;
+    }
+  }
+
+  /* ─── HERO ─── */
+  .hero-section {
+    overflow: hidden;
+    padding: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-section {
+      padding: 1rem;
+    }
+  }
+
+  .hero-frame {
+    position: relative;
+    width: 100%;
+    min-height: calc(100dvh - 2rem);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-start;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
     overflow: hidden;
-    padding: 80px 0 0 0;
-  }
-
-  .hero-image-container {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    mix-blend-mode: difference;
+    border-radius: 1.6rem;
+    overflow: hidden;
+    border: 1px solid var(--colors-ink-60);
   }
 
   .hero-bg-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-  }
-
-  .hero-overlay {
     position: absolute;
     inset: 0;
+    z-index: 0;
+    background-color: var(--colors-teal-10);
+    mix-blend-mode: difference;
   }
 
-  .hero-logo-container {
-    position: absolute;
-    top: 80px;
-    left: 2rem;
-    z-index: 10;
+  .hero-bg-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
 
   .hero-content {
     position: relative;
     z-index: 1;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    padding: 2rem 2rem 4rem 2rem;
+    padding: 2rem 1.25rem 3rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
   }
 
-  .hero-cell .heading-display {
-    font-size: clamp(2.5rem, 6vw + 1rem, 7rem);
-  }
-
-  @media (min-width: 768px) {
-    .hero-content {
-      padding: 4rem;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      align-items: end;
-      gap: 4rem;
-    }
+  .hero-headline {
+    margin: 0;
+    max-width: 18ch;
   }
 
   .hero-footer {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .hero-subhead {
-    font-size: var(--font-size-l);
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 350;
+    font-size: var(--font-size-xl);
   }
 
   .text-highlight {
@@ -268,53 +381,243 @@ import BackgroundShader from '@/components/ui/BackgroundShader.astro'
     flex-wrap: wrap;
   }
 
-  /* Sidebar */
-  .display-cell {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    border-right: 1px solid var(--border);
+  @media (min-width: 768px) {
+    .hero-content {
+      padding: 4rem;
+    }
   }
 
-  .sticky-content {
-    position: sticky;
-    top: 2rem;
-    height: calc(100vh - 4rem);
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  @media (min-width: 2000px) {
+    .hero-content {
+      padding: 4rem;
+    }
+
+    .hero-frame {
+      min-height: calc(100dvh - 12rem);
+    }
   }
 
-  .display-group {
+  @media (max-width: 420px) {
+    .hero-content {
+      padding: 1.5rem 1.25rem 2.5rem;
+    }
+
+    .hero-subhead {
+      font-size: 1rem;
+    }
+  }
+
+  /* ─── DEMO DEVICE ─── */
+  .demo-device {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+
+  .demo-device video {
+    width: 200px;
+    height: auto;
+    border-radius: 33px;
+    border: 6px solid #1a1a1a;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+    transform: rotate(2deg);
+    background: #000;
+  }
+
+  @media (min-width: 768px) {
+    .demo-device {
+      grid-column: 9 / 13;
+      grid-row: span 2;
+      align-items: start;
+      padding: 0;
+      margin-top: -2rem;
+    }
+
+    .demo-device video {
+      width: 240px;
+    }
+  }
+
+  /* ─── FEATURE GRID ─── */
+  .feature-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 2rem 0;
+  }
+
+  @media (min-width: 480px) {
+    .feature-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .feature-grid {
+      grid-column: 2 / 12;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .feature-card {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: transform 0.3s ease, opacity 0.8s ease-out;
+    transition-delay: calc(var(--i, 0) * 80ms);
   }
 
-  .display-value {
-    font-family: var(--font-pixel);
-    font-size: 14px;
+  .feature-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .feature-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
+  .feature-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
     color: var(--colors-teal-95);
-    letter-spacing: 0.05em;
   }
 
-  .mt-auto {
-    margin-top: auto;
+  .feature-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
   }
 
-  .scroll-line {
-    width: 1px;
-    height: 100px;
-    background: linear-gradient(to bottom, var(--colors-teal-95), transparent);
+  /* ─── NETWORK BREAK ─── */
+  .network-break {
+    padding: 0 1rem 1rem;
   }
 
-  /* Content Sections */
-  .content-cell {
+  .network-break-inner {
+    background:
+      url('/media/network-dies-bg.webp') no-repeat center center / cover,
+      var(--colors-red-20);
+    background-blend-mode: exclusion, darken;
+    margin: 0 auto;
+    padding: 4rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 1rem;
+    border-radius: 1.6rem;
+    border: 1px solid var(--colors-indigo-10);
+    color: var(--colors-indigo-30);
+  }
+
+  .network-break-heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin: 0;
+  }
+
+  .network-break-body {
+    max-width: 50ch;
+    color: var(--colors-indigo-100);
+    font-size: var(--font-size-l);
+  }
+
+  .network-break-kicker {
+    font-weight: 700;
+  }
+
+  /* ─── ORGANIZER CTA ─── */
+  .organizer-cta {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
-    padding: 4rem;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  @media (min-width: 768px) {
+    .organizer-cta {
+      grid-column: 2 / 8;
+      padding: 4rem 0 6rem;
+    }
+  }
+
+  /* ─── PHONE CLUSTER ─── */
+  .phone-cluster {
+    grid-column: 1 / -1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    padding: 2rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .phone-cluster {
+      grid-column: 2 / 7;
+      min-height: 550px;
+    }
+  }
+
+  .phone-mockup {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    border-radius: 32px;
+    border: 4px solid #1a1a1a;
+    background-size: 200% 200%;
+  }
+
+  @media (min-width: 768px) {
+    .phone-mockup {
+      width: 240px;
+      border-width: 8px;
+      border-radius: 40px;
+    }
+  }
+
+  .phone-chat {
+    transform: rotate(-8deg) translateX(-60px) translateY(-15px);
+    z-index: 1;
+  }
+
+  .phone-ar {
+    transform: rotate(8deg) translateX(60px) translateY(15px);
+    z-index: 2;
+  }
+
+  @media (max-width: 420px) {
+    .phone-mockup {
+      width: 160px;
+    }
+    .phone-chat {
+      transform: rotate(-6deg) translateX(-45px) translateY(-10px);
+    }
+    .phone-ar {
+      transform: rotate(6deg) translateX(45px) translateY(10px);
+    }
+  }
+
+  /* ─── ATTENDEE FEATURES ─── */
+  .attendee-features {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem 0 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .attendee-features {
+      grid-column: 7 / 12;
+      padding: 2rem 0;
+    }
   }
 
   .feature-list {
@@ -323,230 +626,111 @@ import BackgroundShader from '@/components/ui/BackgroundShader.astro'
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0;
   }
 
   .feature-list li {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 1rem;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1rem 0;
   }
 
-  .visual-cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 4rem;
+  .feature-list li .feature-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
   }
 
-  .network-card {
-    margin: 0;
-    text-align: center;
-    
-    img {
-      border-radius: 4px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    figcaption {
-      margin-top: 1rem;
-      color: var(--colors-red-80);
-    }
+  .feature-list strong {
+    color: var(--colors-ink-100);
   }
 
-  .phone-cluster {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .phone-mockup {
-    position: absolute;
-    width: 280px;
-    border-radius: 32px;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-    border: 6px solid #1a1a1a;
-  }
-
-  .chat-view {
-    transform: rotate(-8deg) translateX(-80px) translateY(-20px);
-    z-index: 1;
-  }
-
-  .ar-view {
-    transform: rotate(8deg) translateX(80px) translateY(20px);
-    z-index: 2;
-  }
-
-  .quote-text {
-    font-family: 'Instrument Sans', sans-serif;
-    font-style: italic;
-    font-size: 2rem;
-    line-height: 1.2;
-    color: var(--colors-teal-95);
-    border-left: 2px solid var(--colors-teal-95);
-    padding-left: 2rem;
-    margin: 0;
-  }
-
-  /* Testimonials */
-  .full-width {
+  /* ─── PULL QUOTE ─── */
+  .pull-quote {
     grid-column: 1 / -1;
-    padding: 6rem 2rem;
-  }
-
-  .center-text {
+    margin: 0;
+    padding: 4rem 0 6rem;
+    border-bottom: 1px solid var(--border);
     text-align: center;
   }
 
-  .testimonials-flow {
-    max-width: 1000px;
-    margin: 4rem auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-  }
-
-  .testimonial-large {
-    text-align: center;
-    
-    p {
-      font-family: 'Instrument Sans', sans-serif;
-      font-style: italic;
-      font-size: 3rem;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      color: var(--colors-ink-100);
-    }
-
-    cite {
-      font-family: var(--font-mono);
-      font-size: 1rem;
-      color: var(--colors-teal-95);
-      font-style: normal;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-  }
-
-  .testimonial-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-  }
-
-  .testimonial-small {
-    p {
-      font-size: 1.5rem;
-      line-height: 1.4;
-      margin-bottom: 1rem;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    cite {
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      color: var(--colors-teal-95);
-      font-style: normal;
-      opacity: 0.8;
-    }
-  }
-
-  .desktop-only {
-    display: none;
+  .pull-quote p {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: clamp(1.75rem, 3vw + 0.5rem, 3.5rem);
+    line-height: 1.15;
+    color: var(--colors-teal-95);
+    margin: 0;
+    max-width: 20ch;
+    margin-inline: auto;
   }
 
   @media (min-width: 768px) {
-    .desktop-only {
-      display: flex;
+    .pull-quote {
+      grid-column: 3 / 11;
     }
   }
 
-  @media (max-width: 767px) {
-    .hero-bg-image {
-      object-fit: cover;
-      object-position: center top;
-    }
+  /* ─── TESTIMONIALS ─── */
+  .testimonial-hero {
+    text-align: center;
+    padding: 2rem 0 4rem;
+  }
 
-    .mobile-order-1 { order: 1; }
-    .mobile-order-2 { order: 2; }
+  .testimonial-hero blockquote {
+    margin: 0;
+  }
 
-    .content-cell {
-      padding: 1.5rem;
-    }
+  .testimonial-hero p {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: clamp(1.5rem, 3vw + 0.5rem, 3rem);
+    line-height: 1.15;
+    color: var(--colors-ink-100);
+    margin: 0 auto 1.5rem;
+    max-width: 22ch;
+  }
 
-    .visual-cell {
-      padding: 1.5rem;
-    }
+  .testimonial-hero cite,
+  .testimonial-small cite {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--colors-teal-95);
+    font-style: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
 
-    .full-width {
-      padding: 3rem 1.5rem;
-    }
+  .testimonial-pair {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-bottom: 6rem;
+  }
 
-    .phone-cluster {
-      position: relative;
-      height: auto;
-      min-height: 360px;
-    }
-
-    .phone-mockup {
-      width: 200px;
-    }
-
-    .chat-view {
-      transform: rotate(-6deg) translateX(-50px) translateY(-10px);
-    }
-
-    .ar-view {
-      transform: rotate(6deg) translateX(50px) translateY(10px);
-    }
-
-    .quote-text {
-      font-size: 1.25rem;
-      padding-left: 1.25rem;
-    }
-
-    .testimonials-flow {
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .testimonial-row {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-    
-    .testimonial-large p {
-      font-size: 2rem;
+  @media (min-width: 768px) {
+    .testimonial-pair {
+      grid-column: 2 / 12;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
     }
   }
 
-  @media (max-width: 420px) {
-    .hero-content {
-      padding: 1.5rem 1.25rem 2.5rem 1.25rem;
-      gap: 1.5rem;
-    }
+  .testimonial-small {
+    margin: 0;
+    border-left: 2px solid var(--colors-teal-95);
+    padding-left: 1.5rem;
+  }
 
-    .hero-subhead {
-      font-size: 1rem;
-    }
-
-    .hero-actions {
-      gap: 0.75rem;
-    }
-
-    .content-cell,
-    .visual-cell {
-      padding: 1.25rem;
-    }
+  .testimonial-small p {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin: 0 0 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
   }
 </style>

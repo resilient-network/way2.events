@@ -19,6 +19,8 @@ const { title, description } = Astro.props as BaseHeadProps
 <!-- Preload critical fonts -->
 <link rel="preload" href="/fonts/InstrumentSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/InclusiveSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Preload LCP hero image -->
+<link rel="preload" href="/media/embrace.webp" as="image" type="image/webp">
 <!-- Async load Google Fonts (Silkscreen only) -->
 <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript>
