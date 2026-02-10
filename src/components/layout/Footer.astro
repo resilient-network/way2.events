@@ -7,33 +7,53 @@ const base = import.meta.env.BASE_URL
 
 <footer class="footer-section">
   <div class="footer-grid">
-    
     <div class="footer-headline-wrapper">
+      <span class="footer-headline-eyebrow label-mono">Built for live events</span>
       <h2 class="heading-display footer-headline">
-        Ready to never lose your friends again?
+        Connection that holds under pressure
       </h2>
     </div>
 
-    <div class="footer-actions">
-      <div class="cta-group">
-        <span class="label-mono">For Attendees</span>
-        <Button
-          href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
-          label="Join our beta"
-          variant="primary"
-          icon="▶"
-          ariaLabel="Join the Way2 beta"
-        />
-      </div>
-      <div class="cta-group">
-        <span class="label-mono">For Organizers</span>
-        <Button href={`${base}partner-up`} label="Connect your event" variant="secondary" />
-      </div>
+    <div class="footer-actions" aria-label="Primary calls to action">
+      <article class="cta-card cta-card--attendees">
+        <p class="cta-card-kicker">For Attendees</p>
+        <h3 class="cta-card-title">Never lose your crew in the crowd</h3>
+        <p class="cta-card-copy">
+          Less texting, less searching, more being there together
+        </p>
+        <div class="cta-card-action">
+          <Button
+            href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
+            label="Join our beta"
+            variant="primary"
+            icon="▶"
+            ariaLabel="Join the Way2 beta"
+          />
+        </div>
+      </article>
+
+      <article class="cta-card cta-card--producers">
+        <p class="cta-card-kicker">For Producers</p>
+        <h3 class="cta-card-title">Run safer, smoother live operations</h3>
+        <p class="cta-card-copy">
+          Deploy venue-wide coordination built for dense crowds and high-pressure event moments
+        </p>
+        <div class="cta-card-action">
+          <Button href={`${base}partner-up`} label="Partner with Way2" variant="dark" />
+        </div>
+      </article>
     </div>
 
     <div class="footer-meta">
       <img src={`${base}brand/logoshape.svg`} width="64" height="64" alt="Way2" class="footer-symbol" />
       <span class="copyright">
+        <a
+          class="powered-by"
+          href="https://resilientnet.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Powered by Resilient Networks"
+        >Powered by Resilient Networks</a> • 
         &copy; {today.getFullYear()} {themeConfig.site.author}. All rights reserved.
       </span>
     </div>
@@ -44,66 +64,132 @@ const base = import.meta.env.BASE_URL
 <style>
   .footer-section {
     position: relative;
-    padding: 2rem 1.5rem;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 2rem 1.25rem;
     margin-top: 4rem;
     overflow: hidden;
+    display: flex;
   }
 
-  @media (min-width: 768px) {
-    .footer-section {
-      padding: 4rem;
-    }
+  .footer-grid {
+    width: 100%;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
   }
 
   .footer-headline-wrapper {
-    grid-column: 1 / -1;
-    margin-bottom: 4rem;
+    text-align: center;
   }
 
-  @media (min-width: 768px) {
-    .footer-headline-wrapper {
-      grid-column: 2 / 12;
-    }
+  .footer-headline-eyebrow {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 1.6rem;
+    margin-bottom: 1rem;
+    background: var(--colors-indigo-10);
   }
 
   .footer-headline {
     font-size: clamp(3rem, 8vw, 8rem);
     color: var(--colors-ink-100);
     margin: 0 auto;
-    text-align: center;
     max-width: 20ch;
+    text-wrap: balance;
   }
 
   .footer-actions {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    align-items: center;
-    margin-bottom: 6rem;
-  }
-
-  @media (min-width: 768px) {
-    .footer-actions {
-      flex-direction: row;
-      justify-content: center;
-      gap: 4rem;
-    }
-  }
-
-  .cta-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 1rem;
+    margin-block: auto;
+  }
+
+  .cta-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 1.6rem;
+    color: var(--colors-indigo-30);
+  }
+
+  .cta-card--attendees {
+    background: var(--colors-fuchsia-80);
+  }
+
+  .cta-card--producers {
+    background: var(--colors-teal-90);
+  }
+
+  .cta-card-kicker {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    background: var(--colors-indigo-10);
+  }
+
+  .cta-card-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  .cta-card-copy {
+    margin: 0;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+    line-height: 1.4;
+    max-width: 38ch;
+  }
+
+  .cta-card--attendees .cta-card-kicker {
+    background: rgba(46, 0, 98, 0.12);
+    color: var(--colors-indigo-20);
+  }
+
+  .cta-card--producers .cta-card-kicker {
+    background: rgba(7, 28, 74, 0.16);
+    color: var(--colors-indigo-20);
+  }
+
+  .cta-card-action {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .cta-card-action :global(.cta-button) {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .powered-by {
+    color: var(--colors-ink-100);
   }
 
   .footer-meta {
-    grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .footer-symbol {
+    opacity: 0.95;
   }
 
   .copyright {
@@ -111,5 +197,33 @@ const base = import.meta.env.BASE_URL
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .footer-section {
+      padding: 3rem 2rem;
+    }
+
+    .footer-actions {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4rem;
+    }
+
+    .cta-card {
+      padding: 1.75rem;
+      min-height: 20.5rem;
+    }
+
+    .footer-meta {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0;
+    }
+
+    .copyright {
+      text-align: right;
+    }
   }
 </style>
