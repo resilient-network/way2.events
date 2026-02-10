@@ -2,7 +2,7 @@
   interface ButtonProps {
     href: string
     label: string
-    variant?: 'primary' | 'secondary' | 'glass'
+    variant?: 'primary' | 'secondary' | 'glass' | 'dark'
     icon?: string
     ariaLabel?: string
     target?: string
@@ -95,6 +95,21 @@
 
     .cta-button--glass:hover {
       background: rgba(255, 255, 255, 0.2);
+    }
+
+    .cta-button--dark {
+      background: var(--colors-indigo-10);
+      color: var(--colors-ink-95);
+      border-color: var(--colors-indigo-10);
+    }
+
+    .cta-button--dark:hover {
+      background: var(--colors-indigo-40);
+      border-color: var(--colors-indigo-40);
+    }
+
+    .cta-button--dark:focus-visible {
+      outline-color: var(--colors-indigo-40);
     }
 
     .cta-button:active {

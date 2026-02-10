@@ -292,6 +292,7 @@ main {
   max-width: var(--content-width);
   margin: 0 auto;
   padding: 0;
+  row-gap: 10vh;
 }
 
 @media (min-width: 768px) {
