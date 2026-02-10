@@ -8,6 +8,40 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
 const { title, description } = Astro.props as BaseHeadProps
 const base = import.meta.env.BASE_URL
+const assetBase = base.endsWith('/') ? base : `${base}/`
+const fontFaceCss = `
+  @font-face {
+    font-family: 'Instrument Sans';
+    src: url('${assetBase}fonts/InstrumentSans-Variable.woff2') format('woff2');
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Instrument Sans';
+    src: url('${assetBase}fonts/InstrumentSans-Italic-Variable.woff2') format('woff2');
+    font-weight: 400 700;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Inclusive Sans';
+    src: url('${assetBase}fonts/InclusiveSans-Variable.woff2') format('woff2');
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Inclusive Sans';
+    src: url('${assetBase}fonts/InclusiveSans-Italic-Variable.woff2') format('woff2');
+    font-weight: 300 700;
+    font-style: italic;
+    font-display: swap;
+  }
+`
 ---
 
 <!-- Global Metadata -->
@@ -20,6 +54,7 @@ const base = import.meta.env.BASE_URL
 <!-- Preload critical fonts -->
 <link rel="preload" href={`${base}fonts/InstrumentSans-Variable.woff2`} as="font" type="font/woff2" crossorigin>
 <link rel="preload" href={`${base}fonts/InclusiveSans-Variable.woff2`} as="font" type="font/woff2" crossorigin>
+<style is:inline set:html={fontFaceCss}></style>
 <!-- Preload LCP hero image -->
 <link rel="preload" href={`${base}media/embrace.webp`} as="image" type="image/webp">
 <!-- Async load Google Fonts (Silkscreen only) -->

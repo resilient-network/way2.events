@@ -13,7 +13,8 @@
       }
 
       this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-      this.svgUrl = '/favicon.svg'
+      // Reuse the existing icon href so Astro base paths are respected.
+      this.svgUrl = this.faviconLink.getAttribute('href') || '/favicon.svg'
       this.currentColor = null
       this.svgContent = null
 
