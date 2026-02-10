@@ -5,7 +5,8 @@ import { imageConfig } from './src/utils/image-config'
 import path from 'node:path'
 
 export default defineConfig({
-  site: themeConfig.site.website,
+  site: 'https://resilientnet.io',
+  base: '/way2.events',
   devToolbar: {
     enabled: false
   },
