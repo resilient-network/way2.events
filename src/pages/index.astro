@@ -210,8 +210,11 @@ const base = import.meta.env.BASE_URL;
         <span class="att-label label-mono scroll-reveal">(02) — For Attendees</span>
 
         <h2 id="att-heading" class="heading-display att-heading scroll-reveal">
-          Lose Yourself,<br />Not Your Friends
+          Find Your Friends,<br />No Matter What
         </h2>
+        <p class="att-bridge body-l scroll-reveal">
+          When networks fail in the crowd, plans fall apart fast. Way2 connects phones directly, so your group can still find each other, even without service.
+        </p>
 
         <div class="att-content">
           <div class="phone-cluster scroll-reveal">
@@ -236,23 +239,26 @@ const base = import.meta.env.BASE_URL;
           </div>
 
           <ul class="feature-pills" role="list">
-            <li style="--pill-rotate: -2deg; --pill-bg: var(--colors-teal-95)"><span class="pill-icon" aria-hidden="true">✈️</span> <strong>Works in Airplane Mode</strong> <span class="pill-desc">— No connectivity? No problem.</span></li>
-            <li style="--pill-rotate: 1.5deg; --pill-bg: var(--colors-fuchsia-99)"><span class="pill-icon" aria-hidden="true">📍</span> <strong>Friend Finding</strong> <span class="pill-desc">— Precise directions to your crew, anywhere in the crowd.</span></li>
-            <li style="--pill-rotate: -1deg; --pill-bg: var(--colors-yellow-100)"><span class="pill-icon" aria-hidden="true">🗺️</span> <strong>Event Maps</strong> <span class="pill-desc">— Find stages, vendors, toilets... your tent!</span></li>
-            <li style="--pill-rotate: 2deg; --pill-bg: var(--colors-indigo-90)"><span class="pill-icon" aria-hidden="true">🛟</span> <strong>Safety Check-ins</strong> <span class="pill-desc">— Get help or notify your group instantly.</span></li>
-            <li style="--pill-rotate: -1.5deg; --pill-bg: var(--colors-green-100)"><span class="pill-icon" aria-hidden="true">🔐</span> <strong>Private</strong> <span class="pill-desc">— Only the friends you add can see you.</span></li>
+            <li style="--pill-rotate: -2deg; --pill-bg: var(--colors-teal-95)"><span class="pill-icon" aria-hidden="true">✈️</span> <strong>Airplane Mode Ready</strong> <span class="pill-desc">— Works without LTE or Wi-Fi.</span></li>
+            <li style="--pill-rotate: 1.5deg; --pill-bg: var(--colors-fuchsia-99)"><span class="pill-icon" aria-hidden="true">📍</span> <strong>Friend Finding</strong> <span class="pill-desc">— Precise directions to your crew in dense crowds.</span></li>
+            <li style="--pill-rotate: -1deg; --pill-bg: var(--colors-yellow-100)"><span class="pill-icon" aria-hidden="true">🗺️</span> <strong>Event Maps</strong> <span class="pill-desc">— Locate stages, vendors, restrooms, and meetup spots.</span></li>
+            <li style="--pill-rotate: 2deg; --pill-bg: var(--colors-indigo-90)"><span class="pill-icon" aria-hidden="true">🛟</span> <strong>Safety Check-ins</strong> <span class="pill-desc">— Send fast check-ins or help alerts to your group.</span></li>
+            <li style="--pill-rotate: -1.5deg; --pill-bg: var(--colors-green-100)"><span class="pill-icon" aria-hidden="true">🔐</span> <strong>Private by Design</strong> <span class="pill-desc">— Only friends you approve can see you.</span></li>
           </ul>
         </div>
 
         <blockquote class="pull-quote scroll-reveal">
-          <p>The bigger the crowd, the better it works.</p>
-          <Button
-            href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
-            label="Get the App"
-            variant="primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          />
+          <p>Never lose your&nbsp;crew&nbsp;again</p>
+          <div class="pull-quote-cta">
+            <Button
+              href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
+              label="Get the App"
+              variant="primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            />
+            <p class="pull-quote-support">Just an app. No extra hardware.</p>
+          </div>
         </blockquote>
 
       </div>
@@ -462,6 +468,18 @@ const base = import.meta.env.BASE_URL;
     }
   }
 
+  :root {
+    --shared-inner-padding: 1.5rem;
+    --shared-section-inline-padding: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --shared-inner-padding: 4rem;
+      --shared-section-inline-padding: 1rem;
+    }
+  }
+
   /* ─── Section Labels — sticky eyebrow ─── */
   .section-label {
     /* grid-column: 1 / -1; */
@@ -500,12 +518,12 @@ const base = import.meta.env.BASE_URL;
   /* ─── HERO ─── */
   .hero-section {
     overflow: hidden;
-    padding: 0.5rem;
+    padding: 0.5rem var(--shared-section-inline-padding);
   }
 
   @media (min-width: 768px) {
     .hero-section {
-      padding: 1rem;
+      padding: 1rem var(--shared-section-inline-padding);
     }
   }
 
@@ -540,7 +558,7 @@ const base = import.meta.env.BASE_URL;
   .hero-content {
     position: relative;
     z-index: 1;
-    padding: 2rem 1.25rem 3rem;
+    padding: 2rem var(--shared-inner-padding) 3rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -574,15 +592,11 @@ const base = import.meta.env.BASE_URL;
 
   @media (min-width: 768px) {
     .hero-content {
-      padding: 4rem;
+      padding: var(--shared-inner-padding);
     }
   }
 
   @media (min-width: 2000px) {
-    .hero-content {
-      padding: 4rem;
-    }
-
     .hero-frame {
       min-height: calc(100dvh - 12rem);
     }
@@ -590,7 +604,7 @@ const base = import.meta.env.BASE_URL;
 
   @media (max-width: 420px) {
     .hero-content {
-      padding: 1.5rem 1.25rem 2.5rem;
+      padding: 1.5rem var(--shared-inner-padding) 2.5rem;
     }
 
     .hero-subhead {
@@ -603,21 +617,15 @@ const base = import.meta.env.BASE_URL;
   /* ═══════════════════════════════════════════════ */
   .org-section {
     scroll-margin-top: 5rem;
-    padding: 0 1rem 1rem;
+    padding: 0 var(--shared-section-inline-padding) 1rem;
   }
 
   .org-inner {
     background: var(--colors-ink-70);
     color: var(--colors-ink-0);
     margin: 0 auto;
-    padding: 1.5rem;
+    padding: var(--shared-inner-padding);
     border-radius: 1.6rem;
-  }
-
-  @media (min-width: 768px) {
-    .org-inner {
-      padding: 4rem;
-    }
   }
 
   /* Label — sticky eyebrow through the features section */
@@ -963,26 +971,32 @@ const base = import.meta.env.BASE_URL;
   .att-section {
     scroll-margin-top: 5rem;
     margin-top: 2rem;
+    padding-inline: var(--shared-section-inline-padding);
   }
 
   .att-inner {
     margin: 0 auto;
-    padding: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .att-inner {
-      padding: 4rem;
-    }
+    padding: var(--shared-inner-padding);
   }
 
   .att-heading {
-    margin: 0 0 3rem;
+    margin: 0 0 1rem;
   }
 
   @media (min-width: 768px) {
     .att-heading {
-      margin-bottom: 4rem;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  .att-bridge {
+    margin: 0 0 2rem;
+    max-width: 54ch;
+  }
+
+  @media (min-width: 768px) {
+    .att-bridge {
+      margin-bottom: 3rem;
     }
   }
 
@@ -1105,17 +1119,25 @@ const base = import.meta.env.BASE_URL;
     flex-direction: column;
     align-items: center;
     gap: 3rem;
-  }
-
-  .pull-quote p {
     font-family: var(--font-heading);
     font-size: clamp(1.75rem, 5vw + 0.5rem, 5rem);
     line-height: 1.15;
     color: var(--colors-indigo-40);
     margin: 0;
-    max-width: 20ch;
     font-weight: 700;
     margin-inline: auto;
+  }
+
+  .pull-quote-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .pull-quote-support {
+    color: var(--colors-indigo-40);
+    font-size: var(--font-size-l);
   }
 
   /* ─── TESTIMONIALS ─── */
