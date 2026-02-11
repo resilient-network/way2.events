@@ -74,29 +74,27 @@ const testimonials = [
 ---
 
 <IndexLayout
-  title="Way2 — The Network for Crowd-Scale Events"
-  description="Reliable communication and coordination for live events. Way2 provides a resilient mesh network for live event organizers and attendees — no cell service required."
+  title="Way2 — The eventOS for signal & location"
+  description="The eventOS for signal & location at festivals, sporting events and conferences. Way2 helps organizers coordinate operations and helps attendees navigate dense crowds."
 >
-  <BackgroundShader />
-
   <main class="editorial-grid">
+    <BackgroundShader />
+    <picture class="hero-bg-image grid-full">
+      <source type="image/webp" srcset={`${base}media/embrace.webp`} />
+      <img
+        src={`${base}media/embrace.png`}
+        alt="Two people embracing in a crowd at a live event"
+        width="1440"
+        height="810"
+        fetchpriority="high"
+      />
+    </picture>
 
     <!-- ════════════════════════════════════════════ -->
     <!-- HERO                                        -->
     <!-- ════════════════════════════════════════════ -->
     <section class="hero-section grid-full" aria-labelledby="hero-heading">
       <div class="hero-frame">
-        <picture class="hero-bg-image">
-          <source type="image/webp" srcset={`${base}media/embrace.webp`} />
-          <img
-            src={`${base}media/embrace.png`}
-            alt="Two people embracing in a crowd at a live event"
-            width="1440"
-            height="810"
-            fetchpriority="high"
-          />
-        </picture>
-
         <img
           class="hero-logo"
           src={`${base}brand/way2-logo-dark.svg`}
@@ -109,12 +107,11 @@ const testimonials = [
 
         <div class="hero-content">
           <h1 id="hero-heading" class="heading-display hero-headline">
-            The Crowd-Scale Network for Live Events
+            The eventOS for signal & location at festivals, sporting events and conferences
           </h1>
           <div class="hero-footer">
             <p class="hero-subhead">
-              Reliable communication and coordination for live events.<br />
-              <span class="text-highlight">No compass or cell service required.</span>
+              Imagine arriving at a live event where your phone <span class="text-highlight">just works.</span>
             </p>
             <div class="hero-actions">
               <Button href="#organizers" label="For Organizers" variant="primary" />
@@ -124,21 +121,18 @@ const testimonials = [
         </div>
       </div>
     </section>
-<!-- 
-    <section class="network-break grid-full scroll-reveal" aria-label="The problem Way2 solves">
+
+    <section class="network-break grid-full scroll-reveal" aria-label="How Way2 transforms live event experiences">
       <div class="network-break-inner">
-        <h3 class="heading-display network-break-heading">
-          When the network dies,<br />everyone feels it
-        </h3>
         <div class="network-break-body">
           <p>
-            Network failure means frustrated fans, disrupted operations, and lost revenue.
-            In the worst case, lives are at risk and PR nightmares erupt.
+            Way2 transforms crowded, disconnected spaces into coordinated, human-scale environments.
+            Our hardware and software unlock safer operations, less time waiting in lines, more quality
+            time with friends, and a new layer of live event infrastructure.
           </p>
-          <p class="network-break-kicker">People don't return.</p>
         </div>
       </div>
-    </section> -->
+    </section>
 
     <!-- ════════════════════════════════════════════ -->
     <!-- (01) ORGANIZERS — Editorial Block            -->
@@ -153,7 +147,7 @@ const testimonials = [
         </h2>
 
         <p class="org-intro scroll-reveal">
-          When networks fail, operations stall, safety response slows, and revenue drops. Way2 creates a resilient local mesh network so your team can coordinate faster, guide attendees clearly, and keep the event moving.
+          For organizers, Way2 replaces walkie-talkies with secure team chat, live event views, and message broadcasting built for real-time coordination in dense crowds.
         </p>
 
         <div class="org-features" role="list" aria-label="Organizer features">
@@ -290,7 +284,7 @@ const testimonials = [
           Find Your Friends,<br />No Matter What
         </h2>
         <p class="att-bridge body-l scroll-reveal">
-          When networks fail in the crowd, plans fall apart fast. Way2 connects phones directly, so your group can still find each other, even without service.
+          At concerts and festivals, guests can see who is playing now and next, locate their friends by stage, find the nearest bathroom, view food options, or call medical directly to the scene.
         </p>
 
         <div class="att-content">
@@ -330,11 +324,11 @@ const testimonials = [
           </div>
 
           <ul class="feature-pills" role="list">
-            <li style="--pill-rotate: -2deg; --pill-bg: var(--colors-teal-95)"><span class="pill-icon" aria-hidden="true">✈️</span> <strong>Airplane Mode Ready</strong> <span class="pill-desc">— Works without LTE or Wi-Fi.</span></li>
-            <li style="--pill-rotate: 1.5deg; --pill-bg: var(--colors-fuchsia-99)"><span class="pill-icon" aria-hidden="true">📍</span> <strong>Friend Finding</strong> <span class="pill-desc">— Precise directions to your crew in dense crowds.</span></li>
-            <li style="--pill-rotate: -1deg; --pill-bg: var(--colors-yellow-100)"><span class="pill-icon" aria-hidden="true">🗺️</span> <strong>Event Maps</strong> <span class="pill-desc">— Locate stages, vendors, restrooms, and meetup spots.</span></li>
-            <li style="--pill-rotate: 2deg; --pill-bg: var(--colors-indigo-90)"><span class="pill-icon" aria-hidden="true">🛟</span> <strong>Safety Check-ins</strong> <span class="pill-desc">— Send fast check-ins or help alerts to your group.</span></li>
-            <li style="--pill-rotate: -1.5deg; --pill-bg: var(--colors-green-100)"><span class="pill-icon" aria-hidden="true">🔐</span> <strong>Private by Design</strong> <span class="pill-desc">— Only friends you approve can see you.</span></li>
+            <li style="--pill-rotate: -2deg; --pill-bg: var(--colors-teal-95)"><span class="pill-icon" aria-hidden="true">🌐</span> <strong>Local Connection</strong> <span class="pill-desc">— Works phone-to-phone in dense crowds, even when internet is unstable or unavailable (yes, even in airplane mode).</span></li>
+            <li style="--pill-rotate: 1.5deg; --pill-bg: var(--colors-fuchsia-99)"><span class="pill-icon" aria-hidden="true">📍</span> <strong>Friend Finding</strong> <span class="pill-desc">— See where your crew is and get clear directions to meet up.</span></li>
+            <li style="--pill-rotate: -1deg; --pill-bg: var(--colors-yellow-100)"><span class="pill-icon" aria-hidden="true">🗺️</span> <strong>Live Event Map</strong> <span class="pill-desc">— Find stages, your tent, and the shortest line for food, restrooms, water, merch, and other essentials.</span></li>
+            <li style="--pill-rotate: 2deg; --pill-bg: var(--colors-indigo-90)"><span class="pill-icon" aria-hidden="true">🛟</span> <strong>Safety First</strong> <span class="pill-desc">— Share check-ins, request help, or route directly to on-site medical when needed.</span></li>
+            <li style="--pill-rotate: -1.5deg; --pill-bg: var(--colors-green-100)"><span class="pill-icon" aria-hidden="true">🔐</span> <strong>Private by Design</strong> <span class="pill-desc">— Only people you trust can see where you are.</span></li>
           </ul>
         </div>
 
@@ -589,8 +583,33 @@ const testimonials = [
   }
 
   /* ─── HERO ─── */
+  .hero-bg-image {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    z-index: 1;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    padding: 0.5rem var(--shared-section-inline-padding);
+  }
+
+  @media (min-width: 768px) {
+    .hero-bg-image {
+      padding: 1rem var(--shared-section-inline-padding);
+    }
+  }
+
+  .hero-bg-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 1.6rem;
+  }
+
   .hero-section {
-    overflow: hidden;
+    grid-row: 1;
+    position: relative;
+    z-index: 2;
     padding: 0.5rem var(--shared-section-inline-padding);
   }
 
@@ -602,30 +621,13 @@ const testimonials = [
 
   .hero-frame {
     position: relative;
+    z-index: 1;
     width: 100%;
+    min-height: calc(100vh - 2rem);
     min-height: calc(100dvh - 2rem);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    overflow: hidden;
-    border-radius: 1.6rem;
-    overflow: hidden;
-    border: 1px solid var(--colors-ink-60);
-  }
-
-  .hero-bg-image {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-color: var(--colors-teal-10);
-    mix-blend-mode: difference;
-  }
-
-  .hero-bg-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
   }
 
   .hero-content {
@@ -691,19 +693,15 @@ const testimonials = [
 
   @media (min-width: 800px) {
     .hero-frame {
-      min-height: max(
-        calc(100dvh - 2rem),
-        800px
-      );
+      min-height: max(calc(100vh - 2rem), 800px);
+      min-height: max(calc(100dvh - 2rem), 800px);
     }
   }
 
   @media (min-width: 2000px) {
     .hero-frame {
-      min-height: max(
-        calc(100dvh - 12rem),
-        800px
-      );
+      min-height: max(calc(100vh - 12rem), 800px);
+      min-height: max(calc(100dvh - 12rem), 800px);
     }
   }
 
@@ -1101,6 +1099,8 @@ const testimonials = [
   .att-section {
     scroll-margin-top: 5rem;
     margin-top: 2rem;
+    padding-left: var(--shared-section-inline-padding);
+    padding-right: var(--shared-section-inline-padding);
     padding-inline: var(--shared-section-inline-padding);
   }
 
@@ -1313,6 +1313,8 @@ const testimonials = [
     line-height: 1.15;
     color: var(--colors-indigo-40);
     font-weight: 700;
+    margin-left: auto;
+    margin-right: auto;
     margin-inline: auto;
   }
 
@@ -1366,6 +1368,7 @@ const testimonials = [
   .testimonial-card::before {
     content: '';
     position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
@@ -1385,6 +1388,7 @@ const testimonials = [
     line-height: 1;
     color: var(--colors-indigo-30);
     margin-bottom: -0.5rem;
+    -webkit-user-select: none;
     user-select: none;
   }
 
