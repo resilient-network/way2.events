@@ -176,14 +176,31 @@ export function initShader(canvas: HTMLCanvasElement): ShaderInstance {
   const uRes  = gl.getUniformLocation(prog, 'uResolution');
   const dprCap = Math.min(window.devicePixelRatio || 1, 2);
 
+  // Track last applied size to avoid unnecessary canvas buffer clears.
+  // On mobile, the URL bar show/hide changes viewport height by a small
+  // amount which triggers ResizeObserver.  Resetting canvas.width/height
+  // clears the WebGL buffer, producing a visible blank-frame flicker.
+  let lastW = 0;
+  let lastH = 0;
+
   function resize() {
-    const rect = canvas.getBoundingClientRect();
-    const w = Math.round(rect.width  * dprCap);
-    const h = Math.round(rect.height * dprCap);
-    if (canvas.width !== w || canvas.height !== h) {
+    // Use window dimensions for the fixed-position, full-viewport canvas
+    // to avoid layout thrash from getBoundingClientRect during scroll.
+    const w = Math.round(window.innerWidth  * dprCap);
+    const h = Math.round(window.innerHeight * dprCap);
+
+    // Skip resize when the change is only a small vertical shift
+    // (mobile URL bar hide/show is typically < 15% of viewport height).
+    const heightDelta = Math.abs(h - lastH);
+    const isMinorHeightChange = lastH > 0 && heightDelta > 0 && heightDelta < lastH * 0.15 && w === lastW;
+
+    if (w !== lastW || (h !== lastH && !isMinorHeightChange)) {
       canvas.width  = w;
       canvas.height = h;
+      lastW = w;
+      lastH = h;
     }
+    gl.viewport(0, 0, canvas.width, canvas.height);
     gl.uniform2f(uRes, canvas.width, canvas.height);
   }
 
