@@ -8,7 +8,6 @@ const base = import.meta.env.BASE_URL
 <footer class="footer-section">
   <div class="footer-grid">
     <div class="footer-headline-wrapper">
-      <span class="footer-headline-eyebrow label-mono">Built for live events</span>
       <h2 class="heading-display footer-headline">
         Connection that holds under pressure
       </h2>
@@ -63,10 +62,9 @@ const base = import.meta.env.BASE_URL
 <style>
   .footer-section {
     position: relative;
-    min-height: 100vh;
-    min-height: 100svh;
-    padding: 2rem 1.25rem;
-    margin-top: 4rem;
+    min-height: 80vh;
+    min-height: 80svh;
+    padding: var(--grid-padding);
     overflow: hidden;
     display: flex;
   }
@@ -77,7 +75,7 @@ const base = import.meta.env.BASE_URL
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 8rem;
+    gap: 3rem;
   }
 
   .footer-headline-wrapper {
@@ -86,10 +84,12 @@ const base = import.meta.env.BASE_URL
 
   .footer-headline-eyebrow {
     display: inline-block;
-    padding: 1rem 2rem;
-    border-radius: 1.6rem;
+    /* padding: 1rem 2rem; */
+    /* border-radius: 1.6rem; */
+    color: var(--colors-ink-100);
     margin-bottom: 1rem;
-    background: var(--colors-indigo-10);
+    font-size: var(--font-size-l);
+    /* background: var(--colors-indigo-10); */
   }
 
   .footer-headline {
@@ -114,6 +114,7 @@ const base = import.meta.env.BASE_URL
     padding: 1.5rem;
     border-radius: 1.6rem;
     color: var(--colors-indigo-30);
+    min-height: 18rem;
   }
 
   .cta-card--attendees {
@@ -144,13 +145,13 @@ const base = import.meta.env.BASE_URL
     font-size: clamp(1.6rem, 2.5vw, 4rem);
     line-height: 1.1;
     text-wrap: balance;
+    max-width: 18ch;
   }
 
   .cta-card-copy {
     margin: 0;
-    font-size: clamp(1rem, 1.2vw, 1.2rem);
-    line-height: 1.4;
-    max-width: 38ch;
+    font-size: var(--font-size-l);
+    max-width: 40ch;
   }
 
   .cta-card--attendees .cta-card-kicker {
@@ -200,18 +201,13 @@ const base = import.meta.env.BASE_URL
   }
 
   @media (min-width: 768px) {
-    .footer-section {
-      padding: 3rem 2rem;
-    }
-
     .footer-actions {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 4rem;
     }
 
     .cta-card {
-      padding: 1.75rem;
-      min-height: 20.5rem;
+      padding: 2rem;
     }
 
     .footer-meta {

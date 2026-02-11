@@ -4,6 +4,8 @@
 :root {
   /* Max Content Width */
   --content-width: 2560px;
+  --grid-padding: 0.75rem;
+  --grid-row-gap: 10vh;
 
   /* Typography */
   --font-heading: 'Instrument Sans', sans-serif;
@@ -250,7 +252,7 @@ main {
 
 /* Utility classes for enhanced visuals */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-text-primary) 0%, #667eea 100%);
+  background: linear-gradient(135deg, var(--colors-ink-0) 0%, var(--colors-indigo-40) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -296,20 +298,35 @@ main {
   width: 100%;
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 0;
-  row-gap: 10vh;
+  padding: var(--grid-padding);
+  row-gap: var(--grid-row-gap);
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
+  :root {
+    --grid-padding: 2rem;
+  }
+
   .editorial-grid {
     grid-template-columns: repeat(12, 1fr);
     column-gap: 1.5rem;
   }
 }
 
+
+@media (min-width: 1200px) {
+  :root {
+    --grid-padding: 3rem;
+  }
+}
+
 @media (min-width: 2000px) {
+  :root {
+    --grid-padding: 6rem;
+  }
+
   .editorial-grid {
-    padding: 6rem;
     column-gap: 2rem;
   }
 }

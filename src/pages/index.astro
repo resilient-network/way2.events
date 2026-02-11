@@ -270,8 +270,8 @@ const testimonials = [
 
         <!-- CTA -->
         <div class="scroll-reveal">
-          <h2 class="heading-2xl">
-            Better ops. Better experience. Built for big crowds.
+          <h2 class="heading-display">
+            Better ops.<br/> Better experience.<br/> <span class="text-gradient">Built for big crowds.</span>
           </h2>
           <Button
             href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
@@ -550,13 +550,11 @@ const testimonials = [
 
   :root {
     --shared-inner-padding: 1.5rem;
-    --shared-section-inline-padding: 0.75rem;
   }
 
   @media (min-width: 768px) {
     :root {
       --shared-inner-padding: 4rem;
-      --shared-section-inline-padding: 1rem;
     }
   }
 
@@ -603,13 +601,6 @@ const testimonials = [
     mix-blend-mode: difference;
     pointer-events: none;
     opacity: 0.8;
-    padding: 0.5rem var(--shared-section-inline-padding);
-  }
-
-  @media (min-width: 768px) {
-    .hero-bg-image {
-      padding: 1rem var(--shared-section-inline-padding);
-    }
   }
 
   .hero-bg-image img {
@@ -624,21 +615,14 @@ const testimonials = [
     grid-row: 1;
     position: relative;
     z-index: 2;
-    padding: 0.5rem var(--shared-section-inline-padding);
-  }
-
-  @media (min-width: 768px) {
-    .hero-section {
-      padding: 1rem var(--shared-section-inline-padding);
-    }
   }
 
   .hero-frame {
     position: relative;
     z-index: 1;
     width: 100%;
-    min-height: calc(100vh - 2rem);
-    min-height: calc(100dvh - 2rem);
+    min-height: calc(100vh - calc(var(--grid-padding) * 2));
+    min-height: calc(100dvh - calc(var(--grid-padding) * 2));
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -706,15 +690,8 @@ const testimonials = [
 
   @media (min-width: 800px) {
     .hero-frame {
-      min-height: max(calc(100vh - 2rem), 800px);
-      min-height: max(calc(100dvh - 2rem), 800px);
-    }
-  }
-
-  @media (min-width: 2000px) {
-    .hero-frame {
-      min-height: max(calc(100vh - 12rem), 800px);
-      min-height: max(calc(100dvh - 12rem), 800px);
+      min-height: max(calc(100vh - calc(var(--grid-padding) * 2)), 800px);
+      min-height: max(calc(100dvh - calc(var(--grid-padding) * 2)), 800px);
     }
   }
 
@@ -756,7 +733,6 @@ const testimonials = [
   /* ═══════════════════════════════════════════════ */
   .org-section {
     scroll-margin-top: 5rem;
-    padding: 0 var(--shared-section-inline-padding) 1rem;
   }
 
   .org-inner {
@@ -881,8 +857,8 @@ const testimonials = [
   .card-icon {
     width: clamp(2.5rem, 5vw, 10rem);
     height: clamp(2.5rem, 5vw, 10rem);
-    color: var(--colors-indigo-50);
-    background: var(--colors-teal-90);
+    color: var(--colors-ink-99);
+    background: var(--colors-indigo-40);
     padding: 2rem;
     border-radius: 50%;
     align-self: flex-end;
@@ -899,17 +875,15 @@ const testimonials = [
     font-size: clamp(2.5rem, 5vw, 5rem);
     /* font-weight: 600; */
     /* margin: 0 0 1.5rem; */
-    color: var(--colors-bright-ink-30);
+    color: var(--colors-bright-indigo-30);
     line-height: 1.1;
     margin: 0 0 2rem;
   }
 
   .org-feature-body {
-    font-size: clamp(1rem, 1.5vw, var(--font-size-xl));
-    /* line-height: 1.6; */
-    /* color: var(--colors-indigo-30); */
+    font-size: var(--font-size-xl);
+    max-width: 48ch;
     margin: 0;
-    /* max-width: 44ch; */
   }
 
   /* ─── Card Tags ─── */
@@ -1072,20 +1046,14 @@ const testimonials = [
   }
 
   /* ─── NETWORK BREAK ─── */
-  .network-break {
-    padding: 0 1rem 1rem;
-  }
-
   .network-break-inner {
-    background: var(--colors-ink-99);
-    margin: 0 auto;
+    background: var(--colors-ink-90);
     padding: 4rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     border-radius: 1.6rem;
-    border: 1px solid var(--colors-indigo-10);
-    color: var(--colors-indigo-30);
+    color: var(--colors-ink-0);
   }
 
   .network-break-heading {
@@ -1108,9 +1076,6 @@ const testimonials = [
   .att-section {
     scroll-margin-top: 5rem;
     margin-top: 2rem;
-    padding-left: var(--shared-section-inline-padding);
-    padding-right: var(--shared-section-inline-padding);
-    padding-inline: var(--shared-section-inline-padding);
   }
 
   .att-inner {
@@ -1341,7 +1306,7 @@ const testimonials = [
 
   /* ─── TESTIMONIALS ─── */
   .testimonials-section {
-    padding: 2rem 1.5rem 6rem;
+    padding-block: 2rem 6rem;
   }
 
   .testimonials-grid {
