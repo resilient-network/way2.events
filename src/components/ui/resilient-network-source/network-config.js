@@ -19,7 +19,7 @@ export const NETWORK_CONFIG = {
     clusterSizeMin: 3.0,
     clusterSizeMax: 6.0,
     spawnSizeMin: 4.0,
-    spawnSizeMax: 3.0
+    spawnSizeMax: 5.0
   },
   edges: {
     utilizationSweepMs: 2000,
