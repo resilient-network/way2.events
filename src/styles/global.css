@@ -4,7 +4,7 @@
 :root {
   /* Max Content Width */
   --content-width: 2560px;
-  --grid-padding: 0.75rem;
+  --grid-padding: 1rem;
   --grid-row-gap: 10vh;
 
   /* Typography */
@@ -68,9 +68,11 @@ html {
   -webkit-overflow-scrolling: touch;
 }
 
-@supports (scrollbar-gutter: stable) {
-  html {
-    scrollbar-gutter: stable;
+@media (min-width: 768px) {
+  @supports (scrollbar-gutter: stable) {
+    html {
+      scrollbar-gutter: stable;
+    }
   }
 }
 

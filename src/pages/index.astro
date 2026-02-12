@@ -133,7 +133,7 @@ const testimonials = [
             </div>
             <div class="network-transition-text-wrap">
               <p class="heading-display network-transition-text network-transition-text--fragile" data-network-fragile>
-                Traditional networks degrade<br />when crowds peak.
+                Traditional networks degrade when crowds peak.
               </p>
               <p class="heading-display network-transition-text network-transition-text--stable" data-network-stable>
                 Way2 is built to <span class="network-transition-highlight" data-network-highlight>stay reliable</span><br />in those moments.
@@ -359,11 +359,11 @@ const testimonials = [
           </div>
 
           <ul class="feature-pills" role="list">
-            <li style="--pill-rotate: -2deg; --pill-bg: var(--colors-teal-95)"><span class="pill-icon" aria-hidden="true">🌐</span> <strong>Local Connection</strong> <span class="pill-desc">— Works phone-to-phone in packed venues, even when internet is unstable or unavailable (yes, even in airplane mode).</span></li>
-            <li style="--pill-rotate: 1.5deg; --pill-bg: var(--colors-fuchsia-99)"><span class="pill-icon" aria-hidden="true">📍</span> <strong>Friend Finding</strong> <span class="pill-desc">— See where your crew is and get clear directions to meet up.</span></li>
-            <li style="--pill-rotate: -1deg; --pill-bg: var(--colors-yellow-100)"><span class="pill-icon" aria-hidden="true">🗺️</span> <strong>Live Event Map</strong> <span class="pill-desc">— Find stages, your tent, and the shortest line for food, restrooms, water, merch, and other essentials.</span></li>
-            <li style="--pill-rotate: 2deg; --pill-bg: var(--colors-indigo-90)"><span class="pill-icon" aria-hidden="true">🛟</span> <strong>Safety First</strong> <span class="pill-desc">— Share check-ins, request help, or route directly to on-site medical when needed.</span></li>
-            <li style="--pill-rotate: -1.5deg; --pill-bg: var(--colors-green-100)"><span class="pill-icon" aria-hidden="true">🔐</span> <strong>Private by Design</strong> <span class="pill-desc">— Only people you trust can see where you are.</span></li>
+            <li style="--pill-rotate: -2deg"><span class="pill-icon" aria-hidden="true">🌐</span><span class="pill-text"><strong>Local Connection</strong> <span class="pill-desc">Works phone-to-phone in packed venues, even when internet is unstable or unavailable (yes, even in airplane mode).</span></span></li>
+            <li style="--pill-rotate: 1.5deg"><span class="pill-icon" aria-hidden="true">📍</span><span class="pill-text"><strong>Friend Finding</strong> <span class="pill-desc">See where your crew is and get clear directions to meet up.</span></span></li>
+            <li style="--pill-rotate: -1deg"><span class="pill-icon" aria-hidden="true">🗺️</span><span class="pill-text"><strong>Live Event Map</strong> <span class="pill-desc">Find stages, your tent, and the shortest line for food, restrooms, water, merch, and other essentials.</span></span></li>
+            <li style="--pill-rotate: 2deg"><span class="pill-icon" aria-hidden="true">🛟</span><span class="pill-text"><strong>Safety First</strong> <span class="pill-desc">Share check-ins, request help, or route directly to on-site medical when needed.</span></span></li>
+            <li style="--pill-rotate: -1.5deg"><span class="pill-icon" aria-hidden="true">🔐</span><span class="pill-text"><strong>Private by Design</strong> <span class="pill-desc">Only people you trust can see where you are.</span></span></li>
           </ul>
         </div>
 
@@ -608,7 +608,7 @@ const testimonials = [
     const pills = gsap.utils.toArray<HTMLElement>('.feature-pills li');
     if (!container || !pills.length) return;
 
-    const finalRotations = [-2, 1.5, -1, 2, -1.5];
+    const finalRotations = [-0.8, 0.6, -0.4, 0.8, -0.6];
 
     // Start all pills hidden (scale 0, offset)
     gsap.set(pills, { scale: 0, y: 30 });
@@ -866,6 +866,7 @@ const testimonials = [
   /* ORGANIZER EDITORIAL SECTION                     */
   /* ═══════════════════════════════════════════════ */
   .org-section {
+    /* display: none; */
     scroll-margin-top: 5rem;
   }
 
@@ -912,11 +913,14 @@ const testimonials = [
     position: relative;
     padding: 10vh 0;
     color: var(--colors-ink-10);
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
 
   .org-feature {
     position: sticky;
-    top: 10vh;
+    top: 15vh;
     z-index: calc(var(--card-index) + 1);
     min-height: 40vh;
     padding: 2rem;
@@ -936,6 +940,12 @@ const testimonials = [
   .org-feature:last-child {
     margin-bottom: 0;
     background: var(--colors-teal-90);
+  }
+
+  @media (max-width: 767px) {
+    .org-feature {
+      margin-bottom: 4rem;
+    }
   }
 
   @media (min-width: 768px) {
@@ -1003,9 +1013,15 @@ const testimonials = [
     height: 100%;
   }
 
+  @media (max-width: 767px) {
+    .card-icon {
+      padding: 1rem;
+    }
+  }
+
   .org-feature-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-size: clamp(var(--font-size-2xl), 5vw, 5rem);
     /* font-weight: 600; */
     /* margin: 0 0 1.5rem; */
     color: var(--colors-bright-indigo-30);
@@ -1368,6 +1384,12 @@ const testimonials = [
     color: var(--colors-ink-0);
   }
 
+  @media (max-width: 767px) {
+    .network-break-inner {
+      padding: clamp(1.5rem, 4vw, 4rem);
+    }
+  }
+
   .network-break-heading {
     position: relative;
     z-index: 1;
@@ -1449,6 +1471,7 @@ const testimonials = [
     justify-content: center;
     min-height: 440px;
     padding: 2rem 0;
+    overflow: hidden;
   }
 
   @media (min-width: 1100px) {
@@ -1566,36 +1589,45 @@ const testimonials = [
   }
 
   .feature-pills li {
-    background: var(--pill-bg);
-    color: var(--colors-indigo-10);
+    background: var(--colors-ink-90);
+    color: var(--colors-ink-10);
     border-radius: 1rem;
     padding: 0.75rem 1.25rem;
     font-size: 0.9rem;
     line-height: 1.4;
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     will-change: transform;
+    width: 100%;
   }
 
   .pill-icon {
-    font-size: 1.1rem;
+    font-size: 1.75rem;
+    line-height: 1;
     flex-shrink: 0;
+  }
+
+  .pill-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
   .feature-pills strong {
     font-weight: 600;
-    color: var(--colors-indigo-10);
+    color: var(--colors-ink-10);
   }
 
   .pill-desc {
-    color: var(--colors-indigo-30);
+    color: var(--colors-ink-30);
   }
 
   /* ─── PULL QUOTE ─── */
   .pull-quote {
-    padding: clamp(4rem, 10vw, 8rem);
+    margin: 10vh 0 0;
+    padding: clamp(2rem, 8vw, 8rem);
     background: var(--colors-fuchsia-90);
     text-align: center;
     border-radius: 1.6rem;
@@ -1604,13 +1636,14 @@ const testimonials = [
     align-items: center;
     gap: 2rem;
     font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 5vw + 0.5rem, 10rem);
+    font-size: clamp(var(--font-size-xl), 5vw, var(--font-size-4xl));
     line-height: 1.15;
     color: var(--colors-indigo-40);
     font-weight: 700;
 
     > p {
       margin: 0;
+      max-width: 18ch;
     }
   }
 

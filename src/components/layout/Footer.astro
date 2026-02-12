@@ -69,6 +69,13 @@ const base = import.meta.env.BASE_URL
     display: flex;
   }
 
+  @media (max-width: 767px) {
+    .footer-section {
+      min-height: auto;
+      margin-bottom: 5rem;
+    }
+  }
+
   .footer-grid {
     width: 100%;
     max-width: var(--content-width);
