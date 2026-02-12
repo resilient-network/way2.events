@@ -1,0 +1,305 @@
+<div class="network-graph-bg" data-network-graph-root aria-hidden="true">
+  <div class="network-graph-container" data-network-graph-container></div>
+</div>
+
+<script>
+  type NetworkGraphRuntime = {
+    cleanupFns: Array<() => void>;
+  };
+
+  type NetworkGraphConnection = {
+    saveData?: boolean;
+    effectiveType?: string;
+  };
+
+  type NetworkAwareNavigator = Navigator & {
+    connection?: NetworkGraphConnection;
+    mozConnection?: NetworkGraphConnection;
+    webkitConnection?: NetworkGraphConnection;
+    deviceMemory?: number;
+    hardwareConcurrency?: number;
+  };
+
+  type ResilientNetworkInstance = {
+    init: (container: HTMLElement) => Promise<void> | void;
+    destroy?: () => void;
+  };
+
+  const runtimeKey = '__way2NetworkGraphRuntime__';
+  const runtimeHost = window as Window & {
+    [runtimeKey]?: NetworkGraphRuntime;
+  };
+
+  const graphRuntime =
+    runtimeHost[runtimeKey] ??
+    (runtimeHost[runtimeKey] = {
+      cleanupFns: [],
+    });
+
+  function cleanupNetworkGraph() {
+    graphRuntime.cleanupFns.forEach((cleanup) => cleanup());
+    graphRuntime.cleanupFns = [];
+  }
+
+  function getNetworkInfo() {
+    const nav = navigator as NetworkAwareNavigator;
+    return {
+      connection: nav.connection ?? nav.mozConnection ?? nav.webkitConnection,
+      deviceMemory: nav.deviceMemory,
+      hardwareConcurrency: nav.hardwareConcurrency,
+    };
+  }
+
+  function shouldLoadEnhancedNetwork() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+
+    const { connection, deviceMemory, hardwareConcurrency } = getNetworkInfo();
+    if (connection?.saveData) return false;
+
+    const effectiveType = (connection?.effectiveType ?? '').toLowerCase();
+    if (effectiveType === 'slow-2g' || effectiveType === '2g' || effectiveType === '3g') {
+      return false;
+    }
+
+    if (typeof deviceMemory === 'number' && deviceMemory <= 4) return false;
+    if (typeof hardwareConcurrency === 'number' && hardwareConcurrency <= 4) return false;
+
+    const shortestEdge = Math.min(window.innerWidth, window.innerHeight);
+    if (shortestEdge < 760) return false;
+
+    return true;
+  }
+
+  function initFallbackNetwork(container: HTMLElement) {
+    const canvas = document.createElement('canvas');
+    canvas.className = 'network-graph-fallback-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    container.appendChild(canvas);
+
+    const context = canvas.getContext('2d');
+    if (!context) {
+      return () => {
+        canvas.remove();
+      };
+    }
+
+    let width = 1;
+    let height = 1;
+    let frameId = 0;
+    let isVisible = true;
+    let started = false;
+
+    const area = container.clientWidth * container.clientHeight;
+    const nodeCount = Math.max(14, Math.min(30, Math.round(area / 34000)));
+    const nodes = Array.from({ length: nodeCount }, (_, index) => ({
+      x: 0,
+      y: 0,
+      vx: (Math.random() - 0.5) * 0.32,
+      vy: (Math.random() - 0.5) * 0.32,
+      accent: index % 10 === 0,
+    }));
+
+    const links: Array<[number, number]> = [];
+    for (let i = 1; i < nodeCount; i += 1) {
+      links.push([i, Math.floor(Math.random() * i)]);
+    }
+    for (let i = 0; i < Math.floor(nodeCount * 0.55); i += 1) {
+      const source = Math.floor(Math.random() * nodeCount);
+      let target = Math.floor(Math.random() * nodeCount);
+      if (target === source) target = (target + 1) % nodeCount;
+      links.push([source, target]);
+    }
+
+    const resetNodes = () => {
+      for (const node of nodes) {
+        node.x = Math.random() * width;
+        node.y = Math.random() * height;
+      }
+    };
+
+    const resize = () => {
+      width = Math.max(1, container.clientWidth);
+      height = Math.max(1, container.clientHeight);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      resetNodes();
+      drawFrame();
+    };
+
+    const drawFrame = () => {
+      context.clearRect(0, 0, width, height);
+
+      context.lineWidth = 0.85;
+      for (const [sourceIndex, targetIndex] of links) {
+        const source = nodes[sourceIndex];
+        const target = nodes[targetIndex];
+        const dx = target.x - source.x;
+        const dy = target.y - source.y;
+        const distance = Math.hypot(dx, dy);
+        const maxDistance = 220;
+        if (distance > maxDistance) continue;
+
+        const alpha = 0.06 + (1 - distance / maxDistance) * 0.16;
+        context.strokeStyle = `rgba(123, 127, 204, ${alpha.toFixed(3)})`;
+        context.beginPath();
+        context.moveTo(source.x, source.y);
+        context.lineTo(target.x, target.y);
+        context.stroke();
+      }
+
+      for (const node of nodes) {
+        context.beginPath();
+        context.arc(node.x, node.y, node.accent ? 1.9 : 1.4, 0, Math.PI * 2);
+        context.fillStyle = node.accent ? 'rgba(123, 127, 204, 0.58)' : 'rgba(123, 127, 204, 0.48)';
+        context.fill();
+      }
+    };
+
+    const tick = () => {
+      if (!isVisible) return;
+
+      for (const node of nodes) {
+        node.x += node.vx;
+        node.y += node.vy;
+
+        if (node.x <= 8 || node.x >= width - 8) node.vx *= -1;
+        if (node.y <= 8 || node.y >= height - 8) node.vy *= -1;
+      }
+
+      drawFrame();
+      frameId = window.requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (started) return;
+      started = true;
+      frameId = window.requestAnimationFrame(tick);
+    };
+
+    const stop = () => {
+      started = false;
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+        frameId = 0;
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(container);
+
+    let intersectionObserver: IntersectionObserver | null = null;
+    if ('IntersectionObserver' in window) {
+      intersectionObserver = new IntersectionObserver((entries) => {
+        isVisible = entries.some((entry) => entry.isIntersecting);
+        if (isVisible) {
+          start();
+        } else {
+          stop();
+        }
+      });
+      intersectionObserver.observe(container);
+    }
+
+    resize();
+    start();
+
+    return () => {
+      stop();
+      resizeObserver.disconnect();
+      intersectionObserver?.disconnect();
+      canvas.remove();
+    };
+  }
+
+  function initNetworkGraph() {
+    cleanupNetworkGraph();
+
+    const roots = document.querySelectorAll<HTMLElement>('[data-network-graph-root]');
+    if (!roots.length) return;
+
+    roots.forEach((root) => {
+      const container = root.querySelector<HTMLElement>('[data-network-graph-container]');
+      if (!container) return;
+
+      let hasInitialized = false;
+      let network: ResilientNetworkInstance | null = null;
+      let teardown: (() => void) | null = null;
+
+      const mount = async () => {
+        if (hasInitialized) return;
+        hasInitialized = true;
+        const shouldUseEnhanced = shouldLoadEnhancedNetwork();
+
+        if (!shouldUseEnhanced) {
+          teardown = initFallbackNetwork(container);
+          return;
+        }
+
+        const { ResilientNetwork } = await import('./resilient-network-source/resilient-network.js');
+        network = new ResilientNetwork() as ResilientNetworkInstance;
+        await network.init(container);
+        teardown = () => {
+          if (typeof network?.destroy === 'function') {
+            network.destroy();
+          }
+        };
+      };
+
+      let observer: IntersectionObserver | null = null;
+
+      if ('IntersectionObserver' in window) {
+        observer = new IntersectionObserver(
+          (entries) => {
+            const isVisible = entries.some((entry) => entry.isIntersecting);
+            if (isVisible) {
+              observer?.disconnect();
+              void mount();
+            }
+          },
+          { rootMargin: '200px 0px' }
+        );
+
+        observer.observe(root);
+      } else {
+        void mount();
+      }
+
+      graphRuntime.cleanupFns.push(() => {
+        observer?.disconnect();
+        teardown?.();
+      });
+    });
+  }
+
+  initNetworkGraph();
+  document.addEventListener('astro:page-load', initNetworkGraph);
+  document.addEventListener('astro:before-swap', cleanupNetworkGraph);
+</script>
+
+<style>
+  .network-graph-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  .network-graph-container {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .network-graph-container :global(canvas) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>
