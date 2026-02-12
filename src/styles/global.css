@@ -252,7 +252,7 @@ main {
 
 /* Utility classes for enhanced visuals */
 .text-gradient {
-  background: linear-gradient(135deg, var(--colors-ink-0) 0%, var(--colors-indigo-40) 100%);
+  background: linear-gradient(135deg, var(--colors-ink-100) 0%, var(--colors-teal-90) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -317,7 +317,7 @@ main {
 
 @media (min-width: 1200px) {
   :root {
-    --grid-padding: 3rem;
+    --grid-padding: 4rem;
   }
 }
 
@@ -338,21 +338,18 @@ main {
 
 .heading-display {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw + 1rem, 6rem);
-  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw + 1rem, 4rem);
+  font-weight: 600;
   line-height: 1.1;
   overflow-wrap: break-word;
 }
 
 .label-mono {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--font-size-sm);
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--colors-teal-95);
-  margin-bottom: 1.5rem;
   display: block;
-  opacity: 0.8;
 }
 
 .body-editorial {

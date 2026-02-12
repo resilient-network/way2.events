@@ -106,7 +106,7 @@ const testimonials = [
         />
 
         <div class="hero-content">
-          <h1 id="hero-heading" class="heading-display hero-headline">
+          <h1 id="hero-heading" class="hero-headline">
             Imagine live events where your phone <span class="text-highlight">just works</span>
           </h1>
           <div class="hero-footer">
@@ -125,7 +125,7 @@ const testimonials = [
     <section class="network-break grid-full scroll-reveal" aria-label="How Way2 transforms live event experiences">
       <div class="network-break-inner">
         <h3 class="heading-display network-break-heading">
-          Built for big crowds. Designed for operational control.
+          Built for big crowds.<br/> Designed for operational control.
         </h3>
         <div class="network-break-body">
           <p class="network-break-kicker">Traditional networks degrade when crowds peak.</p>
@@ -153,13 +153,13 @@ const testimonials = [
         <span class="org-label label-mono scroll-reveal">(01) — For Organizers</span>
 
         <h2 id="org-heading" class="heading-display org-heading scroll-reveal">
-          Your event stays connected. Your team stays coordinated.
+          Your event stays connected.<br/> Your team stays coordinated.
         </h2>
 
-        <p class="org-intro scroll-reveal">
+        <p class="org-intro">
           Way2 provides upgraded coordination and situational awareness: secure team chat, live event views, and message broadcasting. No training, no expensive walkie-talkies, no cross-talk.
         </p>
-        <p class="body-l scroll-reveal">
+        <p class="org-intro">
           Your ops team stays informed and in sync, even when venue infrastructure is overloaded.
         </p>
 
@@ -275,8 +275,8 @@ const testimonials = [
           </h2>
           <Button
             href="https://docs.google.com/forms/d/e/1FAIpQLSduCM6cOmQd2xNFpeqKcyyYNI8efWHrgY4u1Rdln4XoYUSQsw/viewform?usp=header"
-            label="Book a Demo"
-            variant="dark"
+            label="Book Your Demo"
+            variant="primary"
             target="_blank"
             rel="noopener noreferrer"
           />
@@ -600,7 +600,6 @@ const testimonials = [
     z-index: 1;
     mix-blend-mode: difference;
     pointer-events: none;
-    opacity: 0.8;
   }
 
   .hero-bg-image img {
@@ -640,6 +639,13 @@ const testimonials = [
   .hero-headline {
     margin: 0;
     max-width: 18ch;
+    font-size: var(--font-size-2xl);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02ch;
+    overflow-wrap: break-word;
+    color: var(--colors-ink-98);
   }
 
   .hero-logo {
@@ -660,6 +666,7 @@ const testimonials = [
   .hero-subhead {
     margin-top: 0;
     font-size: var(--font-size-xl);
+    max-width: 40ch;
   }
 
   .text-highlight {
@@ -736,8 +743,8 @@ const testimonials = [
   }
 
   .org-inner {
-    background: var(--colors-ink-70);
-    color: var(--colors-ink-0);
+    position: relative;
+    background: var(--colors-indigo-10);
     margin: 0 auto;
     padding: var(--shared-inner-padding);
     border-radius: 1.6rem;
@@ -747,13 +754,13 @@ const testimonials = [
   .org-label,
   .att-label {
     position: sticky;
-    top: 1.5rem;
-    z-index: 20;
-    color: var(--colors-yellow-20);
+    top: var(--grid-padding);
+    z-index: 200;
+    color: var(--colors-ink-0);
     font-size: var(--font-size-m);
     letter-spacing: 0.1ch;
     margin-bottom: 1.5rem;
-    background: var(--colors-yellow-90);
+    background: var(--colors-yellow-95);
     padding: 1rem;
     display: inline-block;
     border-radius: 0.5rem;
@@ -761,8 +768,7 @@ const testimonials = [
 
   /* Heading */
   .org-heading {
-    color: var(--colors-indigo-40);
-    margin: 0 0 2rem;
+    color: var(--colors-teal-90);
     max-width: 25ch;
   }
 
@@ -771,7 +777,6 @@ const testimonials = [
     font-family: var(--font-sans);
     font-size: var(--font-size-xl);
     max-width: 54ch;
-    line-height: 1.4;
   }
 
 
@@ -779,6 +784,7 @@ const testimonials = [
   .org-features {
     position: relative;
     padding: 10vh 0;
+    color: var(--colors-ink-10);
   }
 
   .org-feature {
@@ -791,7 +797,7 @@ const testimonials = [
     border-radius: 2rem;
     /* box-shadow: 0 4px 40px rgba(0, 0, 0, 0.08); */
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
     flex-direction: column;
     justify-content: space-between;
     transform-origin: top center;
@@ -858,7 +864,7 @@ const testimonials = [
     width: clamp(2.5rem, 5vw, 10rem);
     height: clamp(2.5rem, 5vw, 10rem);
     color: var(--colors-ink-99);
-    background: var(--colors-indigo-40);
+    background: var(--colors-indigo-10);
     padding: 2rem;
     border-radius: 50%;
     align-self: flex-end;
@@ -886,34 +892,11 @@ const testimonials = [
     margin: 0;
   }
 
-  /* ─── Card Tags ─── */
-  .card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 2rem;
-  }
-
-  .card-tag {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.02em;
-    padding: 0.4rem 1rem;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--colors-indigo-40);
-    white-space: nowrap;
-    text-transform: uppercase;
-  }
-
   /* ─── Card Footer ─── */
   .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .org-feature-num {
@@ -922,7 +905,7 @@ const testimonials = [
     font-size: clamp(2.5rem, 4vw, 5rem);
     font-weight: 400;
     line-height: 1;
-    color: var(--colors-indigo-80);
+    color: var(--colors-indigo-40);
   }
 
   .card-hint {
@@ -1058,7 +1041,7 @@ const testimonials = [
 
   .network-break-heading {
     font-size: clamp(2rem, 5vw, 4rem);
-    margin: 0;
+    margin-bottom: 0;
   }
 
   .network-break-body {
