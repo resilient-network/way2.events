@@ -2,7 +2,6 @@
 import { themeConfig } from '@/config'
 import { ClientRouter } from 'astro:transitions'
 import ThemeManager from '@/components/ui/ThemeManager.astro'
-import FaviconThemeSwitcher from '@/components/ui/FaviconThemeSwitcher.astro'
 import type { LayoutProps } from '@/types'
 
 type Props = LayoutProps
@@ -18,7 +17,6 @@ const fadeAnimation = themeConfig.general.fadeAnimation
   </head>
   <body>
     <ThemeManager />
-    <FaviconThemeSwitcher />
     <slot />
   </body>
 </html>
